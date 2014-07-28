@@ -1,0 +1,536 @@
+{
+    "steps": [
+        {
+            "diagramStep" : "internet",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "icon" : "user-2",
+                            "id" : "User"
+                        }
+
+                        ,
+                        {
+                            "icon": "laptop",
+                            "id" : "Laptop"
+                        }
+
+                        ,
+                        {
+                            "icon": "wifi-high",
+                            "id" : "Internet"
+                        }
+                        ,
+                        {
+                            "icon": "server2",
+                            "id" : "Server",
+                            "name" : "Website Server"
+                        }
+                        ,
+                        {
+                            "icon": "filesystem",
+                            "id" : "Filesystem",
+                            "name" : "My Website"
+                        }
+                        ,
+                        {
+                            "id" : "HTML",
+                            "icon" : "document-html",
+                            "name" : "hello-world.html"
+                        }
+                        ,
+                        {
+                            "id" : "Image",
+                            "icon" : "image"
+                        }
+                        ,
+                        {
+                            "id" : "Video",
+                            "icon" : "video-2"
+                        }
+                        ,
+                        {
+                            "icon": "software",
+                            "id" : "Web Server"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "User" : "right",
+                "Laptop" : "right:2",
+                "Internet" : "right:3",
+                "Server" : "right:4",
+                "Web Server" : "right:4.5 down:0.5",
+                "Filesystem" : "right:5.5 down:0.5",
+                "HTML" : "right:6.5",
+                "Image" : "right:6.5 down:1",
+                "Video" : "right:6.5 down:2"
+            }
+            ,
+            "connections" : {
+                "Laptop" : ["User", "Internet"],
+                "Server" : ["Internet", "Web Server"],
+                "Filesystem" : ["Web Server", "HTML", "Image", "Video"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "wordpress",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "icon": "software",
+                            "id" : "WordPress",
+                            "from" : "Server"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Filesystem" : "right:5.5",
+                "WordPress" : "right:5.5 down:1"
+            }
+            ,
+            "connections" : {
+                "WordPress" : ["Web Server"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "wordpress-database",
+            "actions" : [
+                {
+                    "method" : "remove",
+                    "items" : [
+                        {
+                            "id" : "Filesystem"
+                        }
+                        ,
+                        {
+                            "id" : "HTML"
+                        }
+                        ,
+                        {
+                            "id" : "Image"
+                        }
+                        ,
+                        {
+                            "id" : "Video"
+                        }
+                    ]
+                }
+                ,
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "icon": "database",
+                            "id" : "Database",
+                            "from" : "Server"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Database" : "right:6.5"
+            }
+        }
+
+
+        ,
+        {
+            "diagramStep" : "wordpress-templates",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "from" : "WordPress",
+                    "items" : [
+                        {
+                            "id" : "Templates",
+                            "icon" : "documents-code",
+                            "from" : "WordPress"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Templates" : "right:6.5 down:1"
+            }
+            ,
+            "connections" : {
+                "Templates" : ["WordPress", "Database", "Filesystem"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "wordpress-full",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "icon": "filesystem",
+                            "id" : "Filesystem",
+                            "from" : "Server"
+                        }
+                        ,
+                        {
+                            "icon" : "document-html",
+                            "id" : "HTML",
+                            "from" : "Server"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Filesystem" : "right:6.5 down:2",
+                "HTML" : "right:7.5 down:2"
+            }
+            ,
+            "connections" : {
+                "Filesystem" : "HTML"
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "super-cache",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "from" : "Web Server",
+                    "items" : [
+                        {
+                            "icon": "software",
+                            "id" : "Super Cache",
+                            "name" : "WP Super Cache",
+                            "from" : "WordPress"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Super Cache" : "right:5.5 down:2"
+            }
+            ,
+            "connections" : {
+                "Super Cache" : ["Web Server", "Filesystem"]
+            }
+
+        }
+
+        ,
+        {
+            "diagramStep" : "super-cache-full",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "from" : "Filesystem",
+                    "items" : [
+                        {
+                            "icon": "filesystem",
+                            "id" : "cached-website",
+                            "from" : "WordPress"
+                        }
+
+                        ,
+                        {
+                            "icon": "filesystem",
+                            "id" : "Posts",
+                            "name" : "posts",
+                            "from" : "WordPress"
+                        }
+
+                        ,
+                        {
+                            "id" : "Static Page",
+                            "name" : "hello-world.html",
+                            "icon" : "document-html",
+                            "from" : "WordPress"
+                        }
+
+                        ,
+                        {
+                            "id" : "About",
+                            "name" : "about.html",
+                            "icon" : "document-html",
+                            "from" : "WordPress"
+                        }
+
+
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "cached-website" : "right:7.5 down:3",
+                "Posts" : "right:8.5 down:3",
+                "Static Page" : "right:9.5 down:2",
+                "About" : "right:9.5 down:3"
+            }
+            ,
+            "connections" : {
+                "cached-website" : "Filesystem",
+                "Posts" : ["cached-website", "Static Page", "About"]
+            }
+        }
+
+
+        ,
+        {
+            "diagramStep" : "static-site-generator",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "from" : "Internet",
+                    "items" : [
+                        {
+                            "icon" : "software",
+                            "id" : "Static Site Generator",
+                            "from" : "Server"
+                        }
+                        ,
+                        {
+                            "icon" : "documents-code",
+                            "id" : "ssg-Templates",
+                            "name" : "Templates",
+                            "from" : "Server"
+                        }
+
+                        ,
+                        {
+                            "icon": "filesystem",
+                            "id" : "ssg-Filesystem",
+                            "name" : "Filesystem",
+                            "from" : "Server"
+                        }
+
+                    ]
+                }
+                ,
+                {
+                    "method" : "remove",
+                    "items" : [
+                        {
+                            "id" : "Super Cache"
+                        }
+                        ,
+                        {
+                            "id" : "Database"
+                        }
+
+                        ,
+                        {
+                            "id" : "Templates"
+                        }
+                        ,
+                        {
+                            "id" : "WordPress"
+                        }
+                    ]
+                }
+
+            ]
+            ,
+            "positions" : {
+                "cached-website" : "right:7.5 down:1",
+                "Posts" : "right:8.5 down:1",
+                "Static Page" : "right:9.5",
+                "About" : "right:9.5 down:1",
+
+                "Filesystem" : "right:6.5 down:0.5",
+                "HTML" : "right:7.5",
+
+                "Static Site Generator" : "right:2 down:3",
+                "ssg-Templates" : "right:2.5 down:3.5",
+                "ssg-Filesystem" : "right:3.5 down:3.5"
+            }
+            ,
+            "connections" : {
+                "ssg-Templates" : ["Static Site Generator", "ssg-Filesystem"],
+                "Filesystem" : ["Web Server", "HTML"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "static-site-generator-full",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "from" : "User",
+                    "items" : [
+                        {
+                            "icon" : "user-2",
+                            "id" : "You",
+                            "from" : "User"
+                        }
+
+                        ,
+                        {
+                            "icon": "laptop",
+                            "id" : "Your Laptop",
+                            "from" : "Laptop"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "You" : "right:1 down:2",
+                "Your Laptop" : "right:2 down:2"
+            }
+            ,
+            "connections" : {
+                "You" : "Your Laptop",
+                "Your Laptop" : ["Internet", "Static Site Generator"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "site-generator-service",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "icon" : "server2",
+                            "id" : "Service",
+                            "name" : "site-generator.com",
+                            "from" : "Static Site Generator"
+                        }
+                        ,
+                        {
+                            "icon" : "software",
+                            "id" : "ssg-Service",
+                            "name" : "Static Site Generator",
+                            "from" : "Static Site Generator"
+                        }
+
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Service" : "right:4 down:1.5",
+                "ssg-Service" : "right:5.5 down:1.5"
+            }
+            ,
+            "connections" : {
+                "Service" : ["Internet", "ssg-Service"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "push-published-site",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "icon" : "server2",
+                            "id" : "Published Site",
+                            "name" : "published-sites.io",
+                            "from" : "Service"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Published Site" : "right:4 down:2.5"
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "published-site",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "icon" : "software",
+                            "id" : "published-web-server",
+                            "name" : "Web Server",
+                            "from" : "Published Site"
+                        }
+
+                        ,
+                        {
+                            "icon" : "filesystem",
+                            "id" : "published-filesystem",
+                            "name" : "my-website",
+                            "from" : "Published Site"
+                        }
+                        ,
+                        {
+                            "id" : "published-html",
+                            "name" : "hello-world.html",
+                            "icon" : "document-html",
+                            "from" : "Published Site"
+                        }
+                        ,
+                        {
+                            "id" : "published-about",
+                            "name" : "about.html",
+                            "icon" : "document-html",
+                            "from" : "Published Site"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "published-web-server" : "right:4.5 down:3",
+                "published-filesystem" : "right:5.5 down:3",
+                "published-html" : "right:6.5 down:2.5",
+                "published-about" : "right:6.5 down:3.5"
+            }
+            ,
+            "connections" : {
+                "Published Site" : ["Internet", "published-web-server"],
+                "published-filesystem" : ["published-web-server", "published-html", "published-about"]
+            }
+
+        }
+        ,
+        {
+            "diagramStep" : "recap",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "recap-application",
+                            "name" : "Application",
+                            "icon" : "software",
+                            "from" : "Server"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "recap-application" : "right:5.5 down:0.5"
+            }
+        }
+
+    ]
+}

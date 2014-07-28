@@ -1,0 +1,46 @@
+#banner
+  %h1#heading Learn Stuff Visually
+  #tagline
+    nilclass produces interactive presentation-style tutorials that explain stuff.
+    %br
+    They're like videos, but powered by text so you can go at your own pace and interact with the content.
+  = partial("newsletter.html")
+
+%h3.heading Check The Examples
+
+#courses-wrap
+  %a.course{ href:"/courses/how-websites-work" }
+    %h4 How Websites Work.
+    %img{src: "/assets/media/how-websites-work.png" }
+  %a.course{ href:"/courses/what-is-a-static-website" }
+    %h4 What is a Static Website?
+    %img{src: "/assets/media/what-is-a-static-website.png" }
+
+#about-wrap
+  %h3.heading About
+  %div
+    nilclass is in active development by
+    %a{ href: "http://plusjade.com/jade-dominguez/" } Jade Dominguez
+    \.
+    %br
+    Feedback is welcomed at
+    %a{ href: "http://twitter.com/plusjade", target: "_blank" } @plusjade
+    and
+    %a{ href: "mailto:plusjade@gmail.com", target: "_blank" } plusjade@gmail.com
+    \.
+
+#credits-wrap
+  %h3.heading Credits
+  %div
+    nilclass.com uses tons of Open Source projects but I'd like to make special mention to:
+  %ul#credits-list
+    %li
+      %a{ href: "http://d3js.org/" }
+        d3js.org
+    %li
+      %a{ href: "http://thenounproject.com/", title: "thenounproject.com" }
+        thenounproject.com
+    %li
+      %a{ href: "https://heapanalytics.com/?utm_source=badge" }
+      - if env == "production"
+        <img style="width:108px;height:41px" class="heap" src="//heapanalytics.com/img/badgeLight.png" alt="Heap - iOS and Web Analytics" /></a>

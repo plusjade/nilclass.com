@@ -1,0 +1,664 @@
+{
+    "steps": [
+        {
+            "diagramStep" : "start",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "icon" : "user-2",
+                            "id" : "You"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "You" : "right down"
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "web-browser",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "Web Browser",
+                            "icon" : "web-browser",
+                            "from" : "You"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Web Browser" : "right:2 down"
+            }
+            ,
+            "connections" : {
+                "You" : "Web Browser"
+            }
+        }
+
+
+        ,
+        {
+            "diagramStep" : "web-browser-platforms",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "icon" : "girl",
+                            "id" : "Anna",
+                            "from" : "You"
+                        }
+                        ,
+                        {
+                            "id" : "Pinky",
+                            "icon" : "cat",
+                            "from" : "You"
+                        }
+                        ,
+                        {
+                            "icon": "tablet",
+                            "id" : "Tablet",
+                            "from" : "You"
+                        }
+
+                        ,
+                        {
+                            "icon": "laptop",
+                            "id" : "Laptop",
+                            "from" : "You"
+                        }
+                        ,
+
+                        {
+                            "icon" : "iphone",
+                            "id" : "Phone",
+                            "from" : "You"
+                        }
+
+                        ,
+                        {
+                            "id" : "Phone Web Browser",
+                            "name" : "Web Browser",
+                            "icon" : "web-browser",
+                            "from" : "You"
+                        }
+                        ,
+                        {
+                            "id" : "Tablet Web Browser",
+                            "name" : "Web Browser",
+                            "icon" : "web-browser",
+                            "from" : "You"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Anna" : "right",
+                "Pinky" : "right down:2",
+                "Tablet" : "right:3 down:2",
+                "Laptop" : "right:3 down",
+                "Phone" : "right:3",
+
+                "Phone Web Browser" : "right:2",
+                "Tablet Web Browser" : "right:2 down:2"
+            }
+            ,
+            "connections" : {
+                "Anna" : "Phone Web Browser",
+                "Phone Web Browser" : "Phone",
+                "Pinky" : "Tablet Web Browser",
+                "Tablet Web Browser" : "Tablet",
+                "Web Browser" : "Laptop"
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "internet",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "Internet",
+                            "icon": "wifi-high",
+                            "from" : "Laptop"
+                        }
+                        ,
+                        {
+                            "id" : "HTML",
+                            "icon" : "document-html",
+                            "from" : "Internet"
+                        }
+                        ,
+                        {
+                            "id" : "Image",
+                            "icon" : "image",
+                            "from" : "Internet"
+                        }
+                        ,
+                        {
+                            "id" : "Video",
+                            "icon" : "video-2",
+                            "from" : "Internet"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Internet" : "right:4 down",
+                "HTML" : "right:5",
+                "Image" : "right:6 down:1",
+                "Video" : "right:5 down:2"
+            }
+            ,
+            "connections" : {
+                "Internet" : ["Phone", "Laptop", "Tablet", "HTML", "Image", "Video"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "server",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "Server",
+                            "icon": "server2",
+                            "from" : "Internet"
+                        }
+                        ,
+                        {
+                            "id" : "Filesystem",
+                            "icon": "filesystem",
+                            "from" : "Server"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "HTML" : "right:6.5 down:0.5",
+                "Image" : "right:6.5 down:1.5",
+                "Video" : "right:6.5 down:2.5",
+
+                "Server" : "right:5 down",
+                "Filesystem" : "right:5.5 down:1.5"
+            }
+            ,
+            "connections" : {
+                "Internet" : ["Phone", "Laptop", "Tablet"],
+                "Server" : ["Internet", "Filesystem"],
+                "Filesystem" : ["HTML", "Image", "Video"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "static-server",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "Web Server",
+                            "icon": "software",
+                            "from" : "Server"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Web Server" : "right:5.5 down:1.5",
+                "Filesystem" : "right:6.5 down:1.5",
+                "HTML" : "right:7.5 down:0.5",
+                "Image" : "right:7.5 down:1.5",
+                "Video" : "right:7.5 down:2.5"
+            }
+            ,
+            "connections" : {
+                "Server" : ["Internet", "Web Server"],
+                "Web Server" : "Filesystem"
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "security-gate",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "icon": "document",
+                            "id" : "Passwords",
+                            "from" : "Filesystem"
+                        }
+                        ,
+                        {
+                            "icon": "document",
+                            "id" : "Secrets",
+                            "from" : "Filesystem"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Passwords" : "right:8 down:1",
+                "Secrets" : "right:8 down:2"
+            }
+            ,
+            "connections" : {
+                "Passwords" : "Filesystem",
+                "Secrets" : "Filesystem"
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "static-server-amazon",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "product-1",
+                            "name" : "Product 1",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "id" : "product-2",
+                            "name" : "Product 2",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "id" : "product-3",
+                            "name" : "Product 3",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "id" : "product-4",
+                            "name" : "Product 4",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                    ]
+                }
+                ,
+                {
+                    "method" : "remove",
+                    "items" : [
+                        {
+                            "id" : "HTML"
+                        }
+                        ,
+                        {
+                            "id" : "Video"
+                        }
+                        ,
+                        {
+                            "id" : "Image"
+                        }
+                        ,
+                        {
+                            "id" : "Passwords"
+                        }
+                        ,
+                        {
+                            "id" : "Secrets"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "product-1" : "right:7.5",
+                "product-2" : "right:7.5 down:1",
+                "product-3" : "right:7.5 down:2",
+                "product-4" : "right:7.5 down:3"
+            }
+            ,
+            "connections" : {
+                "Filesystem" : ["product-1", "product-2", "product-3", "product-4"]
+            }
+        }
+
+
+        ,
+        {
+            "diagramStep" : "web-application",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "Application",
+                            "icon": "software",
+                            "from" : "Web Server"
+                        }
+                        ,
+                        {
+                            "id" : "Templates",
+                            "icon": "documents-code",
+                            "from" : "Web Server"
+                        }
+                    ]
+                }
+                ,
+                {
+                    "method" : "remove",
+                    "items" : [
+                        {
+                            "id" : "product-1"
+                        }
+                        ,
+                        {
+                            "id" : "product-2"
+                        }
+                        ,
+                        {
+                            "id" : "product-3"
+                        }
+                        ,
+                        {
+                            "id" : "product-4"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Filesystem" : "right:8.5 down:1.5",
+                "product-1" : "right:9.5",
+                "product-2" : "right:9.5 down:1",
+                "product-3" : "right:9.5 down:2",
+                "product-4" : "right:9.5 down:3",
+
+                "Application" : "right:6.5 down:1.5",
+                "Templates" : "right:7.5 down:1.5"
+            }
+            ,
+            "connections" : {
+                "Application" : ["Web Server", "Templates"],
+                "Web Server" : [],
+                "Templates" : "Filesystem"
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "database",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "Database",
+                            "icon": "software",
+                            "from" : "Server"
+                        }
+                        ,
+                        {
+                            "id" : "Product 1",
+                            "icon" : "document",
+                            "from" : "Database"
+                        }
+                        ,
+                        {
+                            "id" : "Product 2",
+                            "icon" : "document",
+                            "from" : "Database"
+                        }
+                        ,
+                        {
+                            "id" : "Product 3",
+                            "icon" : "document",
+                            "from" : "Database"
+                        }
+                        ,
+                        {
+                            "id" : "Product 4",
+                            "icon" : "document",
+                            "from" : "Database"
+                        }
+
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Filesystem" : "right:8 down:2.5",
+
+                "Database" : "right:7.5 down:0.5",
+                "Product 1" : "right:9",
+                "Product 2" : "right:9 down:0.75",
+                "Product 3" : "right:9 down:1.5",
+                "Product 4" : "right:9 down:2.25"
+            }
+            ,
+            "connections" : {
+                "Database" : ["Templates", "Product 1", "Product 2","Product 3","Product 4","Product data 5"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "dedicated-database",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "Database Server",
+                            "icon": "database",
+                            "from" : "Server"
+                        }
+                    ]
+                }
+                ,
+                {
+                    "method" : "remove",
+                    "items" : [
+                        {
+                            "id": "Database"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Database Server" : "right:7.5"
+            }
+            ,
+            "connections" : {
+                "Database Server" : ["Templates", "Product 1", "Product 2","Product 3","Product 4","Product data 5"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "multi-app-architecture",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "Server (clone 1)",
+                            "icon": "server2",
+                            "from" : "Server"
+                        }
+                        ,
+                        {
+                            "id" : "Web Server clone 1",
+                            "icon": "software",
+                            "from" : "Server"
+                        }
+                        ,
+                        {
+                            "id" : "App clone 1",
+                            "icon": "software",
+                            "from" : "Server"
+                        }
+                        ,
+                        {
+                            "id" : "templates-clone-1",
+                            "icon": "documents-code",
+                            "name" : "Templates",
+                            "from" : "Server"
+                        }
+                    ]
+                }
+
+                ,
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "Server (clone 2)",
+                            "icon": "server2",
+                            "from" : "Server"
+                        }
+                        ,
+                        {
+                            "id" : "Web Server clone 2",
+                            "icon": "software",
+                            "from" : "Server"
+                        }
+                        ,
+                        {
+                            "id" : "App clone 2",
+                            "icon": "software",
+                            "from" : "Server",
+                            "connect" : "Database Server"
+                        }
+                        ,
+                        {
+                            "id" : "templates-clone-2",
+                            "icon": "documents-code",
+                            "name" : "Templates",
+                            "from" : "Server"
+                        }
+                    ]
+                }
+
+            ]
+            ,
+            "positions" : {
+                "Server (clone 1)" : "right:5",
+                "Web Server clone 1" : "right:5.5 down:0.5",
+                "App clone 1" : "right:6.5 down:0.5",
+                "templates-clone-1" : "right:7 down:1",
+
+                "Server (clone 2)" : "right:5 down:2",
+                "Web Server clone 2" : "right:5.5 down:2.5",
+                "App clone 2" : "right:6.5 down:2.5",
+                "templates-clone-2" : "right:7 down:2"
+            }
+            ,
+            "connections" : {
+                "Web Server clone 1" : ["Server (clone 1)", "App clone 1"],
+                "Web Server clone 2" : ["Server (clone 2)", "App clone 2"],
+                "templates-clone-1" : ["App clone 1", "Database Server"],
+                "templates-clone-2" : ["App clone 2", "Database Server"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "reverse-proxy",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "Reverse Proxy",
+                            "icon": "server2",
+                            "from" : "Internet"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Server" : "right:6.5 down",
+
+                "Web Server" : "right:7 down:1.5",
+                "Filesystem" : "right:9 down:2.5",
+                "Product 1" : "right:10",
+                "Product 2" : "right:10 down:0.75",
+                "Product 3" : "right:10 down:1.5",
+                "Product 4" : "right:10 down:2.25",
+
+
+                "Application" : "right:8 down:1.5",
+                "Templates" : "right:9 down:1.5",
+
+                "Database Server" : "right:9",
+
+                "Server (clone 1)" : "right:6.5",
+                "Web Server clone 1" : "right:7 down:0.5",
+                "App clone 1" : "right:8 down:0.5",
+                "templates-clone-1" : "right:8.5 down:1",
+
+                "Server (clone 2)" : "right:6.5 down:2",
+                "Web Server clone 2" : "right:7 down:2.5",
+                "App clone 2" : "right:8 down:2.5",
+                "templates-clone-2" : "right:8.5 down:2",
+
+                "Reverse Proxy" : "right:5 down"
+            }
+            ,
+            "connections" : {
+                "Server" : ["Web Server"],
+                "Reverse Proxy" : "Internet"
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "reverse-proxy-web-server",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "reverse-proxy-web-server",
+                            "icon" : "software",
+                            "name" : "Web Server",
+                            "from" : "Reverse Proxy"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "reverse-proxy-web-server" : "right:5.5 down:1.5"
+            }
+            ,
+            "connections" : {
+                "reverse-proxy-web-server" : ["Reverse Proxy", "Server", "Server (clone 1)", "Server (clone 2)"]
+            }
+        }
+    ]
+}

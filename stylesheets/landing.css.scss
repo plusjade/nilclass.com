@@ -1,0 +1,187 @@
+body.landing {
+  margin:0; padding:0;
+  $main-color: #1c9edb;
+  $main-color-dark: #1780b0;
+  $main-color-darkest: #0f5575;
+  $contrast: #ffd600;
+
+  text-align: center;
+  h1, h2, h3, h4, h5 { margin:0 }
+  h1 { font-size: 70px; }
+  h2 { font-size: 40px; }
+  h3 { font-size: 36px; }
+  h4 { font-size: 30px; }
+  a:link {
+    color: inherit;
+  }
+  .container {
+    width:50%;
+    margin:auto;
+    padding:10px;
+    text-align: center;
+  }
+  #banner {
+    padding: 60px 20px 100px 20px;
+    background: $main-color;
+    /* IE10 Consumer Preview */
+    background-image: url('/assets/media/landing-graphic.svg'), -ms-radial-gradient(right center, ellipse farthest-side, #58BBE9 0%, #1C9EDB 100%);
+    /* Mozilla Firefox */
+    background-image: url('/assets/media/landing-graphic.svg'), -moz-radial-gradient(right center, ellipse farthest-side, #58BBE9 0%, #1C9EDB 100%);
+    /* Opera */
+    background-image: url('/assets/media/landing-graphic.svg'), -o-radial-gradient(right center, ellipse farthest-side, #58BBE9 0%, #1C9EDB 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: url('/assets/media/landing-graphic.svg'), -webkit-gradient(radial, right center, 0, right center, 954, color-stop(0, #58BBE9), color-stop(1, #1C9EDB));
+    /* Webkit (Chrome 11+) */
+    background-image: url('/assets/media/landing-graphic.svg'), -webkit-radial-gradient(right center, ellipse farthest-side, #58BBE9 0%, #1C9EDB 100%);
+    /* W3C Markup, IE10 Release Preview */
+    background-image: url('/assets/media/landing-graphic.svg'), radial-gradient(ellipse farthest-side at right center, #58BBE9 0%, #1C9EDB 100%);
+
+    background-repeat:no-repeat;
+    background-position-x: 150%;
+    background-position-y: center;
+  }
+  #heading {
+    margin-bottom:60px;
+    color:#FFF;
+    text-shadow: 2px 2px 0px $main-color-dark;
+  }
+  #tagline {
+    font-size: 1.4em;
+    margin-bottom: 60px;
+    color:#FFF;
+    text-shadow: 1px 1px 0px $main-color-dark;
+  }
+  .heading {
+    padding:20px;
+    background-color: $contrast;
+    color:#FFF;
+    text-align: center;
+    text-shadow: 1px 1px 0px #ffc400;
+  }
+  #courses-wrap {
+    .course {
+      display:block;
+      text-decoration: none;
+      background-color: #FFF;
+      padding:20px;
+      border-bottom:2px solid $main-color;
+      &:last-child {
+        border:0;
+      }
+      &:hover {
+        h4 {
+          text-decoration: underline;
+        }
+      }
+      h4 {
+        text-align: center;
+        margin: 20px 0;
+        color:#424242;
+      }
+      img {
+        display: block;
+        margin:auto;
+      }
+    }
+  }
+
+  #mce-EMAIL {
+    width: 200px;
+    border:1px solid #fbe9e7;
+  }
+  #signup-form {
+    width: 30%;
+    margin: 0 auto;
+    border:2px solid $main-color-dark;
+    border-radius: 5px;
+    font-family: inherit;
+    text-align: center;
+    color:#FFF;
+    input {
+      padding: 2px 8px;
+      font-size: 14px;
+      line-height: 22px;
+    }
+    form {
+      padding: 20px;
+    }
+  }
+  #mc-embedded-subscribe {
+    background-color: $main-color-dark;
+    border: 0;
+    color:#FFF;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: #FFF;
+      color: #212121;
+    }
+  }
+
+  #about-wrap {
+    margin-top: 60px;
+    background-color: transparent;
+    padding-bottom:30px;
+    .heading {
+      background-color: transparent;
+      color: inherit;
+      text-shadow:none;
+    }
+  }
+  #credits-wrap {
+    background-color: transparent;
+    padding-bottom:30px;
+    .heading {
+      background-color: transparent;
+      color: inherit;
+      text-shadow:none;
+    }
+  }
+  #credits-list {
+    list-style: none;
+    text-align: center;
+    margin:0;
+    padding:0;
+    li {
+      display: inline-block;
+      height:100px;
+      width:200px;
+      vertical-align: middle;
+      line-height: 100px;
+      a {
+        display: block;
+        font-size: 24px;
+        font-family: inherit;
+        color: inherit;
+      }
+      img {
+        display: block;
+        margin: auto;
+        &.heap {
+          margin-top:30px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen
+and (max-width : 800px) {
+  body.landing {
+    #signup-form {
+      width:100%;
+      height:auto;
+    }
+    #courses-wrap {
+      img {
+        width:100%;
+        height:auto;
+      }
+    }
+
+    #banner {
+      background-position-x: 0;
+      background-position-y: center;
+    }
+  }
+}

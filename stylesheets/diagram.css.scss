@@ -1,0 +1,108 @@
+$background-color: #FFF;
+$primary-border-color: #ccc;
+$alt-background-color: #FBF8F5;
+
+body.visualizer {
+  .node {
+    text {
+      font-size: 12px;
+      font-family: courier;
+      fill: #455a64;
+      fill-opacity: 1;
+      &.text-bg {
+        fill : none;
+        stroke: $background-color;
+        strok-opacity: 1;
+        stroke-width: 6;
+        stroke-linejoin: round;
+      }
+    }
+    use {
+      pointer-events: all;
+      &:hover {
+        fill: orange;
+        cursor: pointer;
+      }
+    }
+
+    circle {
+      cursor: pointer;
+      &.focus {
+        fill: #1c9edb;
+        fill-opacity: 0.1;
+        stroke: none;
+      }
+      &.clicker {
+        stroke: none;
+        fill-opacity: 0;
+        &:hover {
+          fill: orange;
+          fill-opacity: 0.2;
+        }
+      }
+      &.icon-bg {
+        fill: $background-color;
+        stroke: none;
+      }
+    }
+  }
+
+  line {
+    stroke: #000;
+    stroke-width: 1.5px;
+  }
+
+  path {
+    &.link-connect {
+      fill: none;
+      stroke: #CCC;
+      stroke-width: 1.5px;
+      stroke-dasharray: 3, 3;
+      &.public {
+        stroke: #A0C55F;
+      }
+    }
+    &.link-focusPath {
+      fill: none;
+      stroke: #1C9EDB;
+      stroke-width: 2px;
+    }
+  }
+
+  .icon {
+    fill: #333;
+    &.web-browser {
+      fill: #228DFF;
+    }
+    &.wifi-high {
+      fill: #FF0092;
+    }
+    &.browser-2 {
+      fill: #772A53;
+    }
+    &.menu {
+      fill: #0D6759;
+    }
+    &.database {
+      fill: #FA3C08;
+    }
+    &.endpoint {
+      fill: #444;
+    }
+    &.exchange {
+      fill: #777;
+    }
+    &.software {
+      fill: #F4DD51;
+      stroke: #E6AC27;
+      stroke-width: 5px;
+    }
+  }
+  .flow-icon {
+    fill: #1C9EDB;
+  }
+
+  .cross-out {
+    fill: #e51c23;
+  }
+}

@@ -1,0 +1,266 @@
+/*
+http://www.google.com/design/spec/style/color.html#color-ui-color-palette
+http://www.colorzilla.com/gradient-editor/
+*/
+$background-color: #FFF;
+$primary-border-color: #eee;
+$alt-background-color: #212121;
+
+html, body {
+  margin: 0;
+  padding:0;
+  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+pre {
+  font-size: 18px;
+}
+a {
+  &:link, &:visited {
+    color: #000;
+    text-decoration: none;
+  }
+  &:hover {
+    color: #666;
+  }
+}
+svg {
+  overflow: visible;
+}
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+body.visualizer {
+  background-color: $background-color;
+}
+
+#steps-count {
+  position: absolute;
+  top:10px;
+  right:10px;
+  padding:0 10px 0 20px;
+  background-color:#FFF;
+  height:40px;
+  line-height:40px;
+  z-index: 21;
+  cursor: pointer;
+  color: #616161;
+  border:1px solid #f5f5f5;
+  border-radius:5px;
+  em {
+    font-style: normal;
+  }
+  &:hover {
+    background-color: #424242;
+    color: #eee;
+  }
+}
+
+#world {
+  position: absolute;
+  bottom:0;
+  left:0;
+  height:580px;
+  right:0;
+  background-color: $background-color;
+  overflow: hidden;
+  border-bottom: 1px solid #111;
+  > svg {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+
+
+#table-of-contents {
+  $border-color: #e0e0e0;
+  z-index: 50;
+  position: absolute;
+  left: 20%;
+  top: 0;
+  width:60%;
+  height:0;
+  background-color: #f5f5f5;
+  color: #616161;
+  overflow: auto;
+  transition: height 0.5s;
+  &.active {
+    height:100%;
+    border:1px solid $border-color;
+  }
+
+  strong {
+    display: block;
+    padding: 10px;
+    font-weight: normal;
+  }
+  ol {
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    list-style: none;
+    counter-reset: chapter;
+    min-width: 200px;
+    li {
+      border-bottom: 1px solid $border-color;
+    }
+  }
+  li {
+    line-height: 34px;
+    &:hover a, &.active a {
+      background-color: #424242;
+      color: #eee;
+    }
+    a {
+      display: block;
+      padding: 0 15px;
+      text-decoration: none;
+      color: inherit;
+      font-size: inherit;
+      cursor: pointer;
+
+      &:before {
+        content: counter(chapter) ". ";
+        counter-increment: chapter;
+      }
+    }
+  }
+
+  .keyboard-info {
+    font-size:12px;
+    color:#777;
+    margin-top:20px;
+    text-align:center;
+  }
+}
+
+
+#prev-next-wrap {
+  position: absolute;
+  top: 120px;
+  left: 0;
+  width:100%;
+}
+#prev-next {
+  width: 100%;
+  margin: 0;
+  position:relative;
+  svg {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    fill: #ccc;
+
+    &.prev {
+      position: absolute;
+      left:10px;
+    }
+
+    &.next {
+      position: absolute;
+      right:10px;
+    }
+    &:hover {
+      fill: #616161;
+    }
+  }
+}
+
+
+#description {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  width: 60%;
+  height:200px;
+  z-index: 20;
+  overflow: visible;
+  background-color: transparent;
+
+  div {
+    font: 16px 'Helvetica Neue';
+    color:#555;
+    padding: 15px;
+    background-color: inherit;
+
+  }
+  h1 {
+    font-size: 28px;
+    margin: 0 0 20px 0;
+    line-height: 1.5em;
+    text-align: center;
+    text-transform:capitalize;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+  }
+  p {
+    margin:0 0 15px 0;
+    line-height: 1.4em;
+  }
+  a {
+    color: green;
+    text-decoration: underline;
+  }
+  pre {
+    font-size: inherit;
+    overflow: auto;
+    background-color: #eee;
+    color: #777;
+  }
+  blockquote {
+    color: #777;
+  }
+
+  ul, ol {
+    line-height: 1.5em;
+    li {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+#zoom-controls {
+  position: absolute;
+  bottom:20px;
+  right:20px;
+  background-color: #FFF;
+  box-shadow: 0 0 4px 0 #ccc;
+  div {
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 28px;
+    color: #777;
+    cursor: pointer;;
+    &:first-child {
+      border-bottom: 1px solid #eee;
+    }
+    &:hover {
+      color: #333;
+    }
+  }
+}

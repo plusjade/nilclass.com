@@ -1,0 +1,40 @@
+#mce-EMAIL {
+  width: 200px;
+  border:1px solid #fbe9e7;
+}
+#signup-form {
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 0;
+  z-index: 999;
+  overflow: hidden;
+  background-color: #dd2c00;
+  font-family: inherit;
+  color: #FFF;
+  text-align: center;
+  transition: height 0.8s;
+  &.active {
+    height: 100px;
+    border: 1px solid #c22700;
+    border-bottom: 0;
+  }
+  input {
+    padding: 2px 8px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  form {
+    padding: 20px;
+  }
+}
+#mc-embedded-subscribe {
+  background-color: #c22700;
+  color: #fbe9e7;
+  border: 1px solid #fbe9e7;
+  cursor: pointer;
+  &:hover {
+    background-color: #b82500;
+  }
+}

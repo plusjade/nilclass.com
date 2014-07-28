@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %title Interactive tutorials
+    %meta{ "http-equiv" => "Content-Type", content: "text/html;charset=utf-8" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+    = stylesheets.load("application.css")
+    = stylesheets.load("//fonts.googleapis.com/css?family=Nunito:300")
+    :css
+      body {
+        font-family: 'Nunito', sans-serif;
+        font-weight: 300;
+        font-size:15px;
+        color: #424242;
+      }
+    - if env == "production"
+      = partial("heap.html")
+  %body.landing
+    = content
+
+  - if env == "production"
+    = partial("clicky.html")
