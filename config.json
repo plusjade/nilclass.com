@@ -1,5 +1,12 @@
 {
-    "courses-data" : {
+    "courses-content" : {
+        "permalink" : ":path/:filename.json",
+        "rss" : {
+            "enable" : false
+        }
+    }
+    ,
+    "courses-diagrams" : {
         "use" : "static"
     }
     ,

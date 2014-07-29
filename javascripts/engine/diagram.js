@@ -79,7 +79,7 @@ var Diagram = function(endpoint) {
         else {
             d3.json(pathEndpoint(), function(pathData) {
                 if(pathData.course) {
-                    d3.json(dataEndpoint(pathData.course.diagram), function(data) {
+                    d3.json(dataEndpoint(), function(data) {
                         if(data) {
 
                             parsePath(pathData.course);
@@ -95,7 +95,6 @@ var Diagram = function(endpoint) {
                             throw("Could not retrieve data from: " + dataEndpoint() );
                         }
                     })
-
 
                 }
                 else {
@@ -210,11 +209,11 @@ var Diagram = function(endpoint) {
         }
     }
 
-    function pathEndpoint(diagram) {
-        return '/courses-data/' + endpoint + '/content.json?' + Math.random();
+    function pathEndpoint() {
+        return '/courses-content/' + endpoint + '.json?' + Math.random();
     }
 
-    function dataEndpoint(diagram) {
-        return '/courses-data/' + endpoint + '/diagram.json?' + Math.random();
+    function dataEndpoint() {
+        return '/courses-diagrams/' + endpoint + '.json?' + Math.random();
     }
 }
