@@ -6,7 +6,6 @@
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
     = stylesheets.load("application.css")
     = stylesheets.load("//fonts.googleapis.com/css?family=Nunito:300")
-    = stylesheets.load("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css")
     :css
       body {
         font-family: 'Nunito', sans-serif;
@@ -302,28 +301,29 @@
         </svg>
       </svg>
 
+
     #world
+      .spinner
+        .bounce1
+        .bounce2
+        .bounce3
+
     #description
       %div
-        %h3 Loading Diagram...
-        %p Browser Requirements:
-        %ul
-          %li HTML5
-          %li SVG
+
     #steps-count
     #prev-next-wrap
       #prev-next
         :plain
-          <svg class="prev" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-            <path fill-rule="evenodd" transform="translate(100,0), scale(-1,1)" clip-rule="evenodd" d="M77.896,40.169l-1.757-1.496l-0.224-0.202c-0.397-0.358-0.819-0.71-1.251-1.056  L33.404,2.253c-3.188-3.08-8.27-2.99-11.35,0.197l-1.1,1.14c-3.08,3.189-2.99,8.271,0.198,11.35l28.832,34.609L24.308,85.542  c-2.967,3.295-2.701,8.37,0.594,11.337l1.177,1.06c3.294,2.967,8.369,2.699,11.335-0.594l38.743-39.401  c0.163-0.142,0.336-0.276,0.483-0.429l1.529-1.583C82.446,51.503,82.322,44.445,77.896,40.169z"/>
+          <svg class="prev" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+            <path transform="translate(20,0), scale(-1,1)" d="M2.679,18.436c0,0.86,0.609,1.212,1.354,0.782l14.612-8.437c0.745-0.43,0.745-1.134,0-1.563L4.033,0.782   c-0.745-0.43-1.354-0.078-1.354,0.782V18.436z"/>
           </svg>
-          <svg class="next" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M77.896,40.169l-1.757-1.496l-0.224-0.202c-0.397-0.358-0.819-0.71-1.251-1.056  L33.404,2.253c-3.188-3.08-8.27-2.99-11.35,0.197l-1.1,1.14c-3.08,3.189-2.99,8.271,0.198,11.35l28.832,34.609L24.308,85.542  c-2.967,3.295-2.701,8.37,0.594,11.337l1.177,1.06c3.294,2.967,8.369,2.699,11.335-0.594l38.743-39.401  c0.163-0.142,0.336-0.276,0.483-0.429l1.529-1.583C82.446,51.503,82.322,44.445,77.896,40.169z"/>
+          <svg class="next" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+            <path d="M2.679,18.436c0,0.86,0.609,1.212,1.354,0.782l14.612-8.437c0.745-0.43,0.745-1.134,0-1.563L4.033,0.782   c-0.745-0.43-1.354-0.078-1.354,0.782V18.436z"/>
           </svg>
     #table-of-contents
+      %h4 Table of Contents
       %ol
-      %p.keyboard-info
-        Use keyboard arrows: <kbd>&larr;</kbd> <kbd>&rarr;</kbd>
 
     = partial("newsletter.html")
 
@@ -337,6 +337,13 @@
       step = (step > 0) ? (step - 1) : 0;
 
       World.diagram.get(step, function(graph) {
+          World.wrap = d3.select("#world")
+                          .html('')
+                          .append("svg:svg")
+                              .attr('viewBox','0 0 1200 500');
+
+          World.container = World.wrap.append("svg:g");
+
           Display.update(graph);
           World.navigation = new Navigation('#prev-next');
           World.diagram.steps(function(steps) {

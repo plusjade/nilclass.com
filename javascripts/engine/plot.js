@@ -1,7 +1,7 @@
 // Library for consuming a graph object to generate coordinates 
 // in order to plot the graph on the page using d3.
 var Plot = function() {
-    var margin = 50;
+    var margin = 55;
 
     // Plot the graph nodes based on the custom data format.
     // This means determing x and y coordinates relative to each node.
@@ -9,11 +9,11 @@ var Plot = function() {
     function nodes(graph) {
         for(id in graph.dict) {
             graph.dict[id]._id = graph.dict[id].id || graph.dict[id].name;
-            var coord = gridify(graph.positions[id], 125);
+            var coord = gridify(graph.positions[id], 110);
 
             graph.dict[id].x0 = 0;
             graph.dict[id].y0 = 0;
-            graph.dict[id].x = margin + coord.x;
+            graph.dict[id].x = coord.x;
             graph.dict[id].y = margin + coord.y;
         }
 

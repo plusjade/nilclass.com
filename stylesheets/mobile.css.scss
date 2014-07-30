@@ -1,38 +1,40 @@
 @media only screen 
-and (max-width : 800px) {
-  #prev-next-wrap {
-    display:none;
-  }
-  #world {
-    position: absolute;
-    left:0;
-    bottom:0;
-    width: 100%;
-    height: 70%;
-  }
-  #description {
-    left: 0;
-    top:0;
-    width: 100%;
-    height:30%;
-    overflow: auto;
-    h1 {
-      font-size: 20px;
-      margin-bottom:10px;
+and (max-width : 1200px) {
+  #steps-count {
+    right: 60px;
+    height:30px;
+    line-height:30px;
+    font-size: 12px;
+    border-radius:2px;
+    padding-left: 25px;
+    svg {
+      width: 30px;
+      height: 30px;
     }
   }
-  #steps-wrap {
-    left:0;
-    width:100%;
-    bottom: 35%;
+  #prev-next-wrap {
+    svg {
+      height: 20px;
+      width: 20px;
+    }
+  }
+  #description {
+    left: 0 !important;
+    top:0 !important;
+    width: 100%;
+    overflow: auto;
+    div {
+      font-size: 12px;
+    }
+    h1 {
+      font-size: 16px;
+      margin-bottom:10px;
+    }
   }
   #table-of-contents {
     left:0;
     z-index: 50;
     width:100%;
-    &.active {
-      height:35%;
-    }
   }
   #signup-form {
     width: 100%;
