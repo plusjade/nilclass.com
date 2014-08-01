@@ -9,10 +9,13 @@ var Plot = function() {
     function nodes(graph) {
         for(id in graph.dict) {
             graph.dict[id]._id = graph.dict[id].id || graph.dict[id].name;
-            var coord = gridify(graph.positions[id], 110);
+            var coord = {
+                x : graph.positions[id][0],
+                y : graph.positions[id][1]
+            }
 
-            graph.dict[id].x0 = 0;
-            graph.dict[id].y0 = 0;
+            graph.dict[id].x0 = 600;
+            graph.dict[id].y0 = 500;
             graph.dict[id].x = coord.x;
             graph.dict[id].y = margin + coord.y;
         }
@@ -81,47 +84,6 @@ var Plot = function() {
         })
 
         return links;
-    }
-
-    // parses grid statements to determine relative coordinate offset.
-    // Example:
-    // "up:2 left:3" returns x,y coordinate up 2 spaces, left 3 spaces where
-    // spaces is an arbitrary spacing unit specified at runtime.
-    function gridify(input, spacing) {
-        if(!spacing) spacing = 100;
-        var directives = (input ? input.split(/\s+/) : []),
-            data = {},
-            x = 0,
-            y = 0;
-
-        directives.forEach(function(directive) {
-            var multiple = 1;
-            if (directive.indexOf(':') > -1 ) {
-                var parts = directive.split(':');
-                directive = parts[0];
-                multiple = parseFloat(parts[1]);
-            }
-
-            data[directive] = multiple;
-        })
-
-        for(key in data) {
-            var coord = spacing * data[key];
-            if (key === "up") {
-                y = -(coord);
-            }
-            else if (key === "down") {
-                y = coord;
-            }
-            else if (key === "right") {
-                x = coord;
-            }
-            else if (key === "left") {
-                x = -(coord);
-            }
-        }
-
-        return { x : x, y : y };
     }
 
     // Public API
