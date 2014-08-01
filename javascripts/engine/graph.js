@@ -1,14 +1,9 @@
 // The Graph object models our data format as a graph of nodes/items and connections.
 var Graph = function(items) {
     // Generate a dictionary graph from an ordered Array represenation.
-    // Maps relations using "mapTo" attribute.
     function dictify(items) {
         var dict = {};
         items.forEach(function(item, i) {
-            if(items[i+1]) {
-                item.mapTo = [items[i+1].id];
-            }
-
             dict[item.id] = item;
         })
 
