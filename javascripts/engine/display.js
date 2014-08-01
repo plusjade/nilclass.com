@@ -1,5 +1,7 @@
 // Display a <Graph> using d3.
 var Display = (function() {
+    var diagonal = d3.svg.diagonal().projection(function(d) { return [d.x, d.y]; });
+
     // Public. update the UI with a graph.
     function update(graph) {
         updateBreadCrumb(graph);
@@ -76,12 +78,12 @@ var Display = (function() {
                             ? classname + ' public'
                             : classname;
             })
-            .attr("d", World.diagonal);
+            .attr("d", diagonal);
 
         link.transition()
             .duration(World.duration)
                 .style('stroke-opacity', 1)
-                .attr("d", World.diagonal);
+                .attr("d", diagonal);
 
 
         link.exit().remove();

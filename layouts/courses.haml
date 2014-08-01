@@ -330,26 +330,7 @@
     = javascripts.load("application.js")
     :javascript
       var course = #{ page.course.to_json };
-
-      World.diagram = new Diagram(course.url);
-
-      var step = parseInt(window.location.hash.substring(1));
-      step = (step > 0) ? (step - 1) : 0;
-
-      World.diagram.get(step, function(graph) {
-          World.wrap = d3.select("#world")
-                          .html('')
-                          .append("svg:svg")
-                              .attr('viewBox','0 0 1200 500');
-
-          World.container = World.wrap.append("svg:g");
-
-          Display.update(graph);
-          World.navigation = new Navigation('#prev-next');
-          World.diagram.steps(function(steps) {
-              World.navigation.update(steps, graph.meta('index'));
-          })
-      })
+      #{ partial("app.js") }
 
   - if env == "production"
     = partial("clicky.html")
