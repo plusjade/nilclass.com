@@ -5,7 +5,7 @@ var Display = (function() {
     // Public. update the UI with a graph.
     function update(graph) {
         updateBreadCrumb(graph);
-        World.page.show(graph.meta('content'));
+        World.page.show(graph.meta('title'), graph.meta('content'));
 
         Plot.nodes(graph);
         var nodes = d3.values(graph.dict);

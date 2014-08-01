@@ -88,7 +88,8 @@ class NilclassParse
     json = ''
     content = ''
 
-    output.each_line.each do |line|
+    output.each_line.each_with_index do |line, i|
+      next if i.zero? # Don't include the title in the content.
       if line.start_with?('{')
         data_open = true
       elsif line.start_with?('}')

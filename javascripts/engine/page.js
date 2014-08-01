@@ -1,16 +1,21 @@
 var Page = function(selector) {
     var node = d3.select(selector);
 
-    this.show = function(content) {
-        var html = node.select('div').html(content);
+    this.show = function(heading, content) {
+        node.html('');
 
-        html.select('h1')
+        node.append('h1')
+            .html(heading)
             .style('opacity', 0)
+            .attr('class', function() {
+                return (content.length == 0) ? 'big' : null;
+            })
             .transition()
                 .duration(500)
                 .style('opacity', 1);
 
-        html.selectAll('p')
+        node.append('div')
+            .html(content)
             .style('opacity', 0)
             .transition()
                 .delay(800)
