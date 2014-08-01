@@ -15,11 +15,10 @@
       #description div {
         font-family: 'Nunito', sans-serif;
       }
+    = javascripts.load("offline/d3.v3.min.js")
     - if env == "production"
-      = javascripts.load("http://d3js.org/d3.v3.min.js")
       = partial("heap.html")
     - else
-      = javascripts.load("offline/d3.v3.min.js")
       = javascripts.load("offline/stacktrace.js")
   %body.visualizer
     :plain
