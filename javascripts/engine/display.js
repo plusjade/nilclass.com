@@ -4,7 +4,6 @@ var Display = (function() {
 
     // Public. update the UI with a graph.
     function update(graph) {
-        updateBreadCrumb(graph);
         World.page.show(graph.meta('title'), graph.meta('content'));
 
         Plot.nodes(graph);
@@ -160,20 +159,6 @@ var Display = (function() {
             .remove();
 
         return markers;
-    }
-
-    function updateBreadCrumb(graph) {
-        var current = graph.meta('index') + 1;
-        var menu = '<svg viewBox="0 0 90 90" enable-background="new 0 0 90 90" xml:space="preserve">'
-                    + '<path d="M29,34h32c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2H29c-1.1,0-2,0.9-2,2C27,33.1,27.9,34,29,34z"/>'
-                    + '<path d="M61,43H29c-1.1,0-2,0.9-2,2c0,1.1,0.9,2,2,2h32c1.1,0,2-0.9,2-2C63,43.9,62.1,43,61,43z"/>'
-                    + '<path d="M61,56H29c-1.1,0-2,0.9-2,2c0,1.1,0.9,2,2,2h32c1.1,0,2-0.9,2-2C63,56.9,62.1,56,61,56z"/>'
-                    + '</svg>'
-                    ;
-
-        var count = '<em>'+ current + '</em> of ' + graph.meta('total') + menu;
-        d3.select('#steps-count').html(count);
-        d3.select('#signup-form').classed('active', current === graph.meta('total'));
     }
 
     return ({

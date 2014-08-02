@@ -1,11 +1,36 @@
-var Navigation = function(selector) {
-    var d3Container = d3.select(selector),
-        tableOfContentsSelector = '#table-of-contents',
-        current = 0;
-
+var Navigation = function(config) {
     this.next = next;
     this.previous = previous;
-    this.update = update;
+    this.navigate = navigate;
+    this.updateStep = updateStep;
+
+    var current = 0,
+        tableOfContents;
+
+    config.diagram.steps(function(steps) {
+        draw();
+
+        tableOfContents = new TableOfContents(config.tocSelector, config.stepToggleSelector);
+        tableOfContents.updateList(steps)
+            .on('click', function(d, i) {
+                d3.event.preventDefault();
+                navigate(i);
+                tableOfContents.hide();
+            })
+
+        d3.select("body")
+            .on("keydown", function(){
+                if(d3.event.keyCode === 39) // right arrow
+                    next();
+                else if(d3.event.keyCode === 37) // left arrow
+                    previous();
+            })
+    })
+
+    function updateStep(index, total) {
+        current = index;
+        tableOfContents.updateStep(index, total);
+    }
 
     function next () {
         navigate(current+1);
@@ -15,62 +40,51 @@ var Navigation = function(selector) {
         navigate(current-1);
     }
 
-    // Update table of contents with the latest steps.
-    function update(steps, index) {
-        current = index || 0;
-
-        steps.forEach(function(d, i) {
-            d.active = (i === index);
-        })
-
-        var nodes = d3.select(tableOfContentsSelector + '> ol').selectAll('li')
-                    .data(steps, function(d){ return d.slug })
-                    .classed('active', function(d) { return d.active })
-
-        nodes.enter()
-            .append('li')
-                .classed('active', function(d) { return d.active })
-            .append('a')
-                .html(function(d) { return d.title })
-                .on('click', function(d, i) {
-                    d3.event.preventDefault();
-                    navigate(i);
-                    d3.select(tableOfContentsSelector).classed('active', false);
-                })
-
-        nodes.exit().remove();
-    }
-
-    function initialize() {
-        d3Container.select('.next')
-            .on('click', function() {
-                d3.event.preventDefault();
-                next();
-            })
-
-        d3Container.select('.prev')
-            .on('click', function() {
-                d3.event.preventDefault();
-                previous();
-            })
-    }
-
     // Prgramatically navigate to step at index.
     function navigate(index) {
-        World.diagram.getBounded(index, function(graph) {
+        config.diagram.getBounded(index, function(graph) {
             Display.update(graph);
+
+            updateStep(graph.meta('index'), graph.meta('total'));
+
             current = graph.meta('index');
-            highlight(current);
+            tableOfContents.highlight(current);
 
             window.location.replace("#" + (current +1)); 
         })
     }
 
-    function highlight(index) {
-        d3.select(tableOfContentsSelector + '> ol').selectAll('li')
-            .classed('active', false)
-            .filter(':nth-child('+ (index+1) +')').classed('active', true);
-    }
+    // draw the DOM nodes into the DOM.
+    function draw() {
+        var container = document.createElement("div");
+        container.id = config.selector.slice(1);
 
-    initialize();
+        var d3C = d3.select(container);
+        d3C.append('svg')
+            .attr('class', 'previous')
+            .on('click', previous)
+            .attr('x', 0)
+            .attr('y', 0)
+            .attr('viewBox', '0 0 20 20')
+            .attr('enable-background', 'new 0 0 20 20')
+            .append('path')
+                .attr('transform', 'translate(20,0), scale(-1,1)')
+                .attr('d', 'M2.679,18.436c0,0.86,0.609,1.212,1.354,0.782l14.612-8.437c0.745-0.43,0.745-1.134,0-1.563L4.033,0.782   c-0.745-0.43-1.354-0.078-1.354,0.782V18.436z');
+
+        d3C.append('svg')
+            .attr('class', 'next')
+            .on('click', next)
+            .attr('x', 0)
+            .attr('y', 0)
+            .attr('viewBox', '0 0 20 20')
+            .attr('enable-background', 'new 0 0 20 20')
+            .append('path')
+                .attr('d', 'M2.679,18.436c0,0.86,0.609,1.212,1.354,0.782l14.612-8.437c0.745-0.43,0.745-1.134,0-1.563L4.033,0.782   c-0.745-0.43-1.354-0.078-1.354,0.782V18.436z');
+
+        var wrap = document.createElement("div");
+        wrap.id = 'prev-next-wrap';
+        wrap.appendChild(container);
+
+        document.body.appendChild(wrap);
+    }
 }
