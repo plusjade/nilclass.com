@@ -34,7 +34,7 @@
     = javascripts.load("application.js")
     :javascript
       var course = #{ page.course.to_json };
-      #{ partial("app.js") }
+      App.course(course);
 
   - if env == "production"
     = partial("clicky.html")
