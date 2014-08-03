@@ -1,6 +1,3 @@
-var World = {};
-World.duration = 500;
-
 var diagram = new Diagram(course.url);
 var step = parseInt(window.location.hash.substring(1));
 step = (step > 0) ? (step - 1) : 0;

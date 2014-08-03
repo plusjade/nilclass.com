@@ -1,6 +1,12 @@
 // Display a <Graph> using d3.
-var Display = function(svgContainer) {
+var Display = function(svgContainer, config) {
     this.update = update;
+
+    if(!config) { config = {} };
+    if(!config.duration) {
+        config.duration = 500;
+    }
+    Style.duration = config.duration;
 
     var diagonal = d3.svg.diagonal().projection(function(d) { return [d.x, d.y]; });
 
@@ -46,7 +52,7 @@ var Display = function(svgContainer) {
 
         // Transition nodes to their new position.
         var nodeUpdate = node.transition()
-            .duration(World.duration)
+            .duration(config.duration)
             .attr("transform", function(d) {
                 return "translate(" + d.x + "," + d.y + ")";
             });
@@ -80,7 +86,7 @@ var Display = function(svgContainer) {
             .attr("d", diagonal);
 
         link.transition()
-            .duration(World.duration)
+            .duration(config.duration)
                 .style('stroke-opacity', 1)
                 .attr("d", diagonal);
 
@@ -154,7 +160,7 @@ var Display = function(svgContainer) {
             })
 
         markers.exit().transition()
-            .duration(World.duration)
+            .duration(config.duration)
             .style("fill-opacity", 0)
             .remove();
 

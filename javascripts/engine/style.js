@@ -1,4 +1,5 @@
 var Style = {
+    duration : 500,
     text : function(nodes) {
         nodes.append("svg:text")
                 .attr('class', 'text-bg')
@@ -61,20 +62,20 @@ var Style = {
     focus : function(nodes) {
         nodes.selectAll("use")
             .transition()
-            .duration(World.duration)
+            .duration(Style.duration)
                 .attr('x', -30)
                 .attr('y', -30)
                 .attr('height', 60)
                 .attr('width', 60)
             .transition()
-            .duration(World.duration)
+            .duration(Style.duration)
                 .attr('x', -25)
                 .attr('y', -25)
                 .attr('height', 50)
                 .attr('width', 50)
 
         nodes.exit().selectAll("use").transition()
-            .duration(World.duration)
+            .duration(Style.duration)
                 .attr('x', -15)
                 .attr('y', -15)
                 .attr('height', 30)
@@ -82,30 +83,30 @@ var Style = {
 
         nodes.selectAll("circle.software")
             .transition()
-                .duration(World.duration)
+                .duration(Style.duration)
                 .attr('r', 20)
             .transition()
-                .duration(World.duration)
+                .duration(Style.duration)
                 .attr('r', 16)
 
 
         nodes.exit().selectAll("circle.software").transition()
-            .duration(World.duration)
+            .duration(Style.duration)
             .attr('r', 8)
 
         nodes.insert('svg:circle', 'g')
             .attr('class', 'focus')
             .attr('r', 0)
             .transition()
-                .duration(World.duration)
+                .duration(Style.duration)
                 .attr('r', 60)
             .transition()
-                .duration(World.duration)
+                .duration(Style.duration)
                 .attr('r', 50)
 
 
         nodes.exit().selectAll("circle.focus").transition()
-            .duration(World.duration)
+            .duration(Style.duration)
             .attr('r', 0)
             .remove()
 
@@ -143,11 +144,11 @@ var Style = {
     pulsePath : function(nodes) {
         nodes
             .transition()
-                .duration(World.duration)
+                .duration(Style.duration)
                 .style('stroke-opacity', 1)
                 .style('stroke-width', 4)
             .transition()
-                .duration(World.duration)
+                .duration(Style.duration)
                 .style('stroke-width', 2)
 
         return nodes;
