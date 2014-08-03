@@ -47,8 +47,6 @@ var Navigation = function(config) {
             World.display.update(graph);
 
             updateStep(graph.meta('index'), graph.meta('total'));
-
-            current = graph.meta('index');
             tableOfContents.highlight(current);
 
             window.location.replace("#" + (current +1)); 
