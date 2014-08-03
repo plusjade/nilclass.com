@@ -44,7 +44,7 @@ var Navigation = function(config) {
     function navigate(index) {
         config.diagram.getBounded(index, function(graph) {
             World.description.show(graph.meta('title'), graph.meta('content'));
-            Display.update(graph);
+            World.display.update(graph);
 
             updateStep(graph.meta('index'), graph.meta('total'));
 

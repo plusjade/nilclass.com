@@ -1,8 +1,10 @@
 // Display a <Graph> using d3.
-var Display = (function() {
+var Display = function(svgContainer) {
+    this.update = update;
+
     var diagonal = d3.svg.diagonal().projection(function(d) { return [d.x, d.y]; });
 
-    // Public. update the UI with a graph.
+    // Update the UI with a graph.
     function update(graph) {
         Plot.nodes(graph);
         var nodes = d3.values(graph.dict);
@@ -14,7 +16,7 @@ var Display = (function() {
         updateNodes(nodes);
 
         var types = ['focus', 'crossOut', "disable"];
-        var nodes = World.container.selectAll("g.node");
+        var nodes = svgContainer.selectAll("g.node");
 
         types.forEach(function(type) {
             nodes
@@ -25,7 +27,7 @@ var Display = (function() {
 
     function updateNodes(nodes) {
         // Update the nodes
-        var node = World.container.selectAll("g.node")
+        var node = svgContainer.selectAll("g.node")
             .data(nodes, function(d) { return d._id });
 
         var nodeEnter = node.enter().append("svg:g")
@@ -64,7 +66,7 @@ var Display = (function() {
     function updateLinks(linkData, namespace) {
         var classname = 'link-' + namespace;
         // Update the links.
-        var link = World.container.selectAll("path." + classname)
+        var link = svgContainer.selectAll("path." + classname)
             .data(linkData, function(d) { return d.source._id + '.' + d.target._id; });
 
         // Enter any new links at the parent's previous position.
@@ -121,7 +123,7 @@ var Display = (function() {
             }
         });
 
-        var markers = World.container.selectAll("g." + namespace)
+        var markers = svgContainer.selectAll("g." + namespace)
                         .data(markerData, function(d) { return d._id });
 
         var markersEnter = markers.enter().append("svg:g")
@@ -158,8 +160,4 @@ var Display = (function() {
 
         return markers;
     }
-
-    return ({
-        update : update
-    })
-})();
+};
