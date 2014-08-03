@@ -30,6 +30,8 @@ var Navigation = function(config) {
     function updateStep(index, total) {
         current = index;
         tableOfContents.updateStep(index, total);
+        tableOfContents.highlight(current);
+        window.location.replace("#" + (current +1));
     }
 
     function next () {
@@ -42,15 +44,7 @@ var Navigation = function(config) {
 
     // Prgramatically navigate to step at index.
     function navigate(index) {
-        config.diagram.getBounded(index, function(graph) {
-            World.description.show(graph.meta('title'), graph.meta('content'));
-            World.display.update(graph);
-
-            updateStep(graph.meta('index'), graph.meta('total'));
-            tableOfContents.highlight(current);
-
-            window.location.replace("#" + (current +1)); 
-        })
+        config.diagram.getBounded(index);
     }
 
     // draw the DOM nodes into the DOM.

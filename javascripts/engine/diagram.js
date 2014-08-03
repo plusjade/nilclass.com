@@ -18,34 +18,34 @@ var Diagram = function(endpoint) {
     if(!endpoint) throw("Diagram endpoint is required");
     this.endpoint = endpoint;
 
+    var dispatch = d3.dispatch('change');
+
+    // Add event listeners.
+    this.on = function(type, listener) {
+        dispatch.on(type, listener);
+    }
+
     // Get graph at <index>.
-    // The callback receives: 
-    //  [Graph] - graph.
-    this.get = function(index, callback) {
+    this.get = function(index) {
         resolve(function() {
-            callback.apply(this, getGraph(index));
+            getGraph(index);
         })
     }
 
     // Get graph at <index> where <index> is coerced to remain within step bounds.
-    // The callback receives:
-    //  [Graph] - graph.
-    this.getBounded = function(index, callback) {
+    this.getBounded = function(index) {
         resolve(function() {
             index = boundedIndex(index);
-
-            callback.apply(this, getGraph(index));
+            getGraph(index);
         })
     }
 
     // Get graph by step slug.
-    // The callback receives: 
-    //  [Graph] - graph.
-    this.getByStepName = function(slug, callback) {
+    this.getByStepName = function(slug) {
         resolve(function() {
             var index = Pages[slug] || 0;
 
-            callback.apply(this, getGraph(index));
+            getGraph(index);
         })
     }
 
@@ -126,6 +126,8 @@ var Diagram = function(endpoint) {
     // This is asking me for a path index.
     // diagrams are index dependent based on building the graph.
     // Example: Path[0] -> Step[2]
+    // The graph is not directly returned, rather it is emitted on the 'change' event.
+    // ex: diagram.on('change', function(graph) {});
     function getGraph(index) {
         var stepIndex = Paths[index].diagramStepIndex,
             steps = Steps.slice(0, stepIndex+1);
@@ -161,7 +163,7 @@ var Diagram = function(endpoint) {
         graph.setMeta(Paths[index]);
         graph.setMeta({ "total" : Paths.length });
 
-        return [graph];
+        dispatch.change(graph);
     }
 
     // stay in bounds
