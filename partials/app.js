@@ -10,7 +10,8 @@ diagram.get(step, function(graph) {
     World.container = world.append("svg:g");
 
     World.duration = 500;
-    World.page = new Page("#description");
+    World.description = new Description("#description");
+    World.description.show(graph.meta('title'), graph.meta('content'));
     Display.update(graph);
 
     new Navigation({

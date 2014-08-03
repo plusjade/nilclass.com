@@ -1,5 +1,7 @@
-var Page = function(selector) {
-    var node = d3.select(selector);
+var Description = function(selector) {
+    var node = d3.select('body')
+                    .append('div').attr('id', selector.slice(1))
+    ;
 
     this.show = function(heading, content) {
         node.html('');
