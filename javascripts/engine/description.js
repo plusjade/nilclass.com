@@ -1,9 +1,11 @@
 var Description = function(selector) {
+    this.show = show;
+
     var node = d3.select('body')
                     .append('div').attr('id', selector.slice(1))
     ;
 
-    this.show = function(heading, content) {
+    function show(heading, content) {
         node.html('');
 
         node.append('h1')
