@@ -24,9 +24,9 @@ var navigation = new Navigation({
 })
 
 diagram.on('change', function(graph) {
-    description.show(graph.meta('title'), graph.meta('content'));
+    description.update(graph.meta('title'), graph.meta('content'));
     display.update(graph);
-    navigation.updateStep(graph.meta('index'), graph.meta('total'));
+    navigation.update(graph.meta('index'), graph.meta('total'));
 })
 
 diagram.get(step);

@@ -2,7 +2,7 @@ var Navigation = function(config) {
     this.next = next;
     this.previous = previous;
     this.navigate = navigate;
-    this.updateStep = updateStep;
+    this.update = update;
 
     var current = 0,
         tableOfContents;
@@ -27,7 +27,7 @@ var Navigation = function(config) {
             })
     })
 
-    function updateStep(index, total) {
+    function update(index, total) {
         current = index;
         tableOfContents.updateStep(index, total);
         tableOfContents.highlight(current);
