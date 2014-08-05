@@ -5,12 +5,12 @@ var Navigation = function(config) {
     this.update = update;
 
     var current = 0,
-        tableOfContents;
+        tableOfContents = new TableOfContents(config.tocSelector, config.stepToggleSelector)
+    ;
 
     config.diagram.steps(function(steps) {
         draw();
 
-        tableOfContents = new TableOfContents(config.tocSelector, config.stepToggleSelector);
         tableOfContents.updateList(steps)
             .on('click', function(d, i) {
                 d3.event.preventDefault();
