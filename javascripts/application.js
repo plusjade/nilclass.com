@@ -11,4 +11,4 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require_tree ./engine
-//= require app
+//= require ./app
