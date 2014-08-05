@@ -60,15 +60,15 @@
             ]
             ,
             "positions" : {
-                "User" : [100, 0],
-                "Laptop" : [200, 0],
-                "Internet" : [300, 0],
-                "Server" : [400, 0],
-                "Web Server" : [450, 50],
-                "Filesystem" : [550, 50],
-                "HTML" : [650, 0],
-                "Image" : [650, 100],
-                "Video" : [650, 200]
+                "User" : [100,50],
+                "Laptop" : [200, 50],
+                "Internet" : [300, 50],
+                "Server" : [400, 50],
+                "Web Server" : [450, 100],
+                "Filesystem" : [550, 100],
+                "HTML" : [650, 50],
+                "Image" : [650, 150],
+                "Video" : [650, 250]
             }
             ,
             "connections" : {
@@ -95,8 +95,8 @@
             ]
             ,
             "positions" : {
-                "Filesystem" : [550, 0],
-                "WordPress" : [550, 100]
+                "Filesystem" : [550, 50],
+                "WordPress" : [550, 150]
             }
             ,
             "connections" : {
@@ -142,7 +142,7 @@
             ]
             ,
             "positions" : {
-                "Database" : [650, 0]
+                "Database" : [650, 50]
             }
         }
 
@@ -165,7 +165,7 @@
             ]
             ,
             "positions" : {
-                "Templates" : [650, 100]
+                "Templates" : [650, 150]
             }
             ,
             "connections" : {
@@ -196,8 +196,8 @@
             ]
             ,
             "positions" : {
-                "Filesystem" : [650, 200],
-                "HTML" : [750, 200]
+                "Filesystem" : [650, 250],
+                "HTML" : [750, 250]
             }
             ,
             "connections" : {
@@ -224,7 +224,7 @@
             ]
             ,
             "positions" : {
-                "Super Cache" : [550, 200]
+                "Super Cache" : [550, 250]
             }
             ,
             "connections" : {
@@ -277,10 +277,10 @@
             ]
             ,
             "positions" : {
-                "cached-website" : [750, 300],
-                "Posts" : [850, 300],
-                "Static Page" : [950, 200],
-                "About" : [950, 300]
+                "cached-website" : [750, 350],
+                "Posts" : [850, 350],
+                "Static Page" : [950, 250],
+                "About" : [950, 350]
             }
             ,
             "connections" : {
@@ -347,17 +347,17 @@
             ]
             ,
             "positions" : {
-                "cached-website" : [750, 100],
-                "Posts" : [850, 100],
-                "Static Page" : [950, 0],
-                "About" : [950, 100],
+                "cached-website" : [750, 150],
+                "Posts" : [850, 150],
+                "Static Page" : [950, 50],
+                "About" : [950, 150],
 
-                "Filesystem" : [650, 50],
-                "HTML" : [750, 0],
+                "Filesystem" : [650, 100],
+                "HTML" : [750, 50],
 
-                "Static Site Generator" : [200, 300],
-                "ssg-Templates" : [250, 350],
-                "ssg-Filesystem" : [350, 350]
+                "Static Site Generator" : [200, 350],
+                "ssg-Templates" : [250, 400],
+                "ssg-Filesystem" : [350, 400]
             }
             ,
             "connections" : {
@@ -391,8 +391,8 @@
             ]
             ,
             "positions" : {
-                "You" : [100, 200],
-                "Your Laptop" : [200, 200]
+                "You" : [100, 250],
+                "Your Laptop" : [200, 250]
             }
             ,
             "connections" : {
@@ -427,8 +427,8 @@
             ]
             ,
             "positions" : {
-                "Service" : [400, 150],
-                "ssg-Service" : [550, 150]
+                "Service" : [400, 200],
+                "ssg-Service" : [550, 200]
             }
             ,
             "connections" : {
@@ -454,7 +454,7 @@
             ]
             ,
             "positions" : {
-                "Published Site" : [400, 250]
+                "Published Site" : [400, 300]
             }
         }
 
@@ -498,10 +498,10 @@
             ]
             ,
             "positions" : {
-                "published-web-server" : [450, 300],
-                "published-filesystem" : [550, 300],
-                "published-html" : [650, 250],
-                "published-about" : [650, 350]
+                "published-web-server" : [450, 350],
+                "published-filesystem" : [550, 350],
+                "published-html" : [650, 300],
+                "published-about" : [650, 400]
             }
             ,
             "connections" : {
@@ -528,7 +528,7 @@
             ]
             ,
             "positions" : {
-                "recap-application" : [550, 50]
+                "recap-application" : [550, 100]
             }
         }
 
