@@ -6,7 +6,7 @@ var App = {
         var description = new Description("#description");
 
         // SVG visualization
-        var world = d3.select("#world").html('')
+        var world = d3.select('body').append('div').attr('id', 'world')
                         .append("svg:svg")
                             .attr('viewBox','0 0 1200 500')
                             .append("svg:g")
