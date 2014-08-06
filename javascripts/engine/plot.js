@@ -1,33 +1,6 @@
 // Library for consuming a graph object to generate coordinates 
 // in order to plot the graph on the page using d3.
 var Plot = function() {
-    // Plot the graph nodes based on the custom data format.
-    // This means determing x and y coordinates relative to each node.
-    // Note this is mutable service, it mutates the graph.
-    function nodes(graph) {
-        for(id in graph.dict) {
-            graph.dict[id]._id = graph.dict[id].id || graph.dict[id].name;
-            var coord = {
-                x : graph.positions[id][0],
-                y : graph.positions[id][1]
-            }
-
-            graph.dict[id].x0 = 600;
-            graph.dict[id].y0 = 500;
-            graph.dict[id].x = coord.x;
-            graph.dict[id].y = coord.y;
-        }
-
-        for(id in graph.dict) {
-            if(graph.dict[id].from && graph.get(graph.dict[id].from)) {
-                var from = graph.get(graph.dict[id].from);
-                graph.dict[id].x0 = from.x;
-                graph.dict[id].y0 = from.y;
-            }
-        }
-
-        return graph;
-    }
 
     // @return[Array] link objects for all connections in a graph.
     // For use with d3.svg.diagonal().
@@ -86,7 +59,6 @@ var Plot = function() {
 
     // Public API
     return {
-        nodes : nodes,
         diagonalConnectionLinks : diagonalConnectionLinks,
         diagonalFocusPathLinks : diagonalFocusPathLinks,
         diagonalPathLinks : diagonalPathLinks
