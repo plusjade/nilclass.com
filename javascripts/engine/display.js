@@ -135,7 +135,7 @@ var Display = function(svgContainer, config) {
         var markersEnter = markers.enter().append("svg:g")
             .attr('class', namespace + ' flow-icon')
             .append('use')
-                .attr('xlink:href', '#flow-icon')
+                .attr('xlink:href', '/assets/media/icons.svg#flow-icon')
                 .attr('height', 20)
                 .attr('width', 20)
                 .attr('x', -10)

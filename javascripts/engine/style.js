@@ -29,7 +29,7 @@ var Style = {
             .attr('r', 14)
 
         nodes.append('g').append('use')
-            .attr('xlink:href', function(d) { return '#' + d.icon })
+            .attr('xlink:href', function(d) { return '/assets/media/icons.svg#' + d.icon })
             .attr('class', function(d) { return "icon " + d.icon })
             .attr('height', function(d) {
                 return d.depth > 0 ? 20 : 30;
@@ -117,7 +117,7 @@ var Style = {
     crossOut : function(nodes) {
         var size = 30;
         var nodesEnter = nodes.append('use')
-            .attr('xlink:href', '#cross-out')
+            .attr('xlink:href', '/assets/media/icons.svg#cross-out')
             .attr('class', 'cross-out')
             .attr('x', -(size/2))
             .attr('y', -(size/2))
