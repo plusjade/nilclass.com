@@ -1,5 +1,110 @@
 // The Graph object models our data format as a graph of nodes/items and connections.
 var Graph = function(items) {
+    this.get = get;
+    this.getAll = getAll;
+    this.find = find;
+    this.findAll = findAll;
+    this.set = set;
+    this.add = add;
+    this.update = update;
+    this.drop = drop;
+
+    this.meta = meta;
+    this.setMeta = setMeta;
+    this.metaItems = metaItems;
+
+    var __dict__ = dictify(items),
+        __meta__ = {}
+    ;
+
+    // TODO: remove this.
+    this.dict = __dict__;
+
+
+    function meta(key) {
+        return __meta__[key];
+    }
+
+    function setMeta(attributes) {
+        for (key in attributes) {
+            __meta__[key] = attributes[key];
+        }
+    }
+
+    // Get items mappped from a meta attribute holding item ids.
+    function metaItems(key) {
+        return findAll(meta(key));
+    }
+
+    // Get an item.
+    function get(key) {
+        return __dict__[key];
+    };
+
+    // Set an item.
+    function set(key, value) {
+        __dict__[key] = value;
+    };
+
+    // Get an item or throw error if not found.
+    function find(key) {
+        if(get(key)) {
+            return get(key);
+        }
+        else {
+            throw "Could not find item using id: " + key;
+        }
+    }
+
+    function getAll(keys) {
+        var items = [];
+        coerceArray(keys).forEach(function(name) {
+            if(get(name)) {
+                items.push(get(name));
+            }
+        })
+
+        return items;
+    };
+
+    function findAll(keys) {
+        return coerceArray(keys).map(function(name) {
+            return find(name);
+        })
+    };
+
+    // Delete an item.
+    function _delete(key) {
+        delete __dict__[key];
+    }
+
+    // Add an item to the graph in relation (mapped) to another item.
+    function add(items) {
+        addToDict(items);
+    }
+
+    // Update item attributes.
+    function update(items) {
+        coerceArray(items).forEach(function(item) {
+            for(key in item) {
+                __dict__[item.id][key] = item[key];
+            }
+        })
+    }
+
+    // Drop one or more items from the graph.
+    function drop(names) {
+        if(!Array.isArray(names)) {
+            names = [names];
+        }
+        names.forEach(function(name) {
+            _delete(name);
+        })
+    }
+
+
+    // Private
+
     // Generate a dictionary graph from an ordered Array represenation.
     function dictify(items) {
         var dict = {};
@@ -8,6 +113,13 @@ var Graph = function(items) {
         })
 
         return dict;
+    }
+
+    function addToDict(items) {
+        var dict = dictify(items);
+        for (key in dict) {
+            set(key, dict[key]);
+        };
     }
 
     function coerceArray(input) {
@@ -19,104 +131,5 @@ var Graph = function(items) {
             result.push(input);
         }
         return result;
-    }
-
-    this.dict = dictify(items);
-    // TODO: Verify the root exists.
-    this._root = items[0].id;
-    this._meta = {};
-
-    this.meta = function(key) {
-        return this._meta[key];
-    }
-
-    this.setMeta = function(attributes) {
-        for (key in attributes) {
-            this._meta[key] = attributes[key];
-        }
-    }
-
-    // Get items mappped from a meta attribute holding item ids.
-    this.metaItems = function(key) {
-        return this.findAll(this.meta(key));
-    }
-
-    // Get an item.
-    this.get = function(key) {
-        return this.dict[key];
-    };
-
-    // Set an item.
-    this.set = function(key, value) {
-        this.dict[key] = value;
-    };
-
-    // Get an item or throw error if not found.
-    this.find = function(key) {
-        if(this.get(key)) {
-            return this.get(key);
-        }
-        else {
-            throw "Could not find item using id: " + key;
-        }
-    }
-
-    this.getAll = function(keys) {
-        var self = this;
-        var items = [];
-        coerceArray(keys).forEach(function(name) {
-            if(self.get(name)) {
-                items.push(self.get(name));
-            }
-        })
-
-        return items;
-    };
-
-    this.findAll = function(keys) {
-        var self = this;
-
-        return coerceArray(keys).map(function(name) {
-            return self.find(name);
-        })
-    };
-
-    // Delete an item.
-    this.delete = function(key) {
-        delete this.dict[key];
-    }
-
-    // Add an item to the graph in relation (mapped) to another item.
-    this.add = function(items) {
-        this.addToDict(items);
-    }
-
-    // Update item attributes.
-    this.update = function(items) {
-        var self = this;
-        coerceArray(items).forEach(function(item) {
-            for(key in item) {
-                self.dict[item.id][key] = item[key];
-            }
-        })
-    }
-
-    // Drop one or more items from the graph.
-    this.drop = function(names) {
-        var self = this;
-        if(!Array.isArray(names)) {
-            names = [names];
-        }
-        names.forEach(function(name) {
-            self.delete(name);
-        })
-    }
-
-    // Internal. Add more items to the graph's dictionary.
-    this.addToDict = function(items) {
-        var dict = dictify(items);
-        for (key in dict) {
-            this.set(key, dict[key]);
-        };
     }
 };
