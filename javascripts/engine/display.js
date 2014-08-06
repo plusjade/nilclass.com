@@ -12,14 +12,11 @@ var Display = function(svgContainer, config) {
 
     // Update the UI with a graph.
     function update(graph) {
-        Plot.nodes(graph);
-        var nodes = d3.values(graph.dict);
-
         updateLinks(Plot.diagonalConnectionLinks(graph), 'connect');
 
         updateLivePaths(Plot.diagonalFocusPathLinks(graph), 'focusPath');
 
-        updateNodes(nodes);
+        updateNodes(graph.nodes());
 
         var types = ['focus', 'crossOut', "disable"];
         var nodes = svgContainer.selectAll("g.node");

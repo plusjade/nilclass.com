@@ -13,13 +13,12 @@ var Graph = function(items) {
     this.setMeta = setMeta;
     this.metaItems = metaItems;
 
+    this.nodes = nodes;
+    this.position = position;
+
     var __dict__ = dictify(items),
         __meta__ = {}
     ;
-
-    // TODO: remove this.
-    this.dict = __dict__;
-
 
     function meta(key) {
         return __meta__[key];
@@ -102,6 +101,34 @@ var Graph = function(items) {
         })
     }
 
+    // Set x and y coordinates for each item.
+    // Note this is mutable service, it mutates the graph.
+    function position(data) {
+        for(id in __dict__) {
+            __dict__[id]._id = __dict__[id].id || __dict__[id].name;
+            var coord = {
+                x : data[id][0],
+                y : data[id][1]
+            }
+
+            __dict__[id].x0 = 600;
+            __dict__[id].y0 = 500;
+            __dict__[id].x = coord.x;
+            __dict__[id].y = coord.y;
+        }
+
+        for(id in __dict__) {
+            if(__dict__[id].from && get(__dict__[id].from)) {
+                var from = get(__dict__[id].from);
+                __dict__[id].x0 = from.x;
+                __dict__[id].y0 = from.y;
+            }
+        }
+    }
+
+    function nodes() {
+        return d3.values(__dict__);
+    }
 
     // Private
 

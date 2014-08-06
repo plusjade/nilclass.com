@@ -152,13 +152,14 @@ var Diagram = function(endpoint) {
             graph = new Graph(items),
             metadata = {};
 
-        graph.positions = positions;
         graph.connections = connections;
 
         // Note this process mutates the graph object in place.
         steps.reduce(function(accumulator, step) {
             return merge(accumulator, step);
         }, graph);
+
+        graph.position(positions);
 
         graph.setMeta(Paths[index]);
         graph.setMeta({ "total" : Paths.length });
