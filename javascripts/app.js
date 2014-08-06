@@ -12,8 +12,6 @@ var App = {
                             .append("svg:g")
         ;
 
-        var display = new Display(world);
-
         // Navigation components
         var navigation = new Navigation({
             diagram : diagram,
@@ -24,7 +22,12 @@ var App = {
 
         diagram.on('change', function(graph) {
             description.update(graph.meta('title'), graph.meta('content'));
-            display.update(graph);
+
+            Display.nodes(world, graph.nodes());
+            Display.nodeOverlays(world, graph);
+            Display.connectionLinks(world, graph.connections(), 'connect');
+            Display.livePaths(world, graph, 'focusPath');
+
             navigation.update(graph.meta('index'), graph.meta('total'));
         })
 

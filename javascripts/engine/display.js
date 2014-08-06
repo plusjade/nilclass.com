@@ -1,37 +1,11 @@
 // Display a <Graph> using d3.
-var Display = function(svgContainer, config) {
-    this.update = update;
+var Display = (function() {
+    var config = { duration : 500 };
 
-    if(!config) { config = {} };
-    if(!config.duration) {
-        config.duration = 500;
-    }
-    Style.duration = config.duration;
-
-    var diagonal = d3.svg.diagonal().projection(function(d) { return [d.x, d.y]; });
-
-    // Update the UI with a graph.
-    function update(graph) {
-        updateLinks(Plot.diagonalConnectionLinks(graph), 'connect');
-
-        updateLivePaths(Plot.diagonalFocusPathLinks(graph), 'focusPath');
-
-        updateNodes(graph.nodes());
-
-        var types = ['focus', 'crossOut', "disable"];
-        var nodes = svgContainer.selectAll("g.node");
-
-        types.forEach(function(type) {
-            nodes
-                .data(graph.metaItems(type), function(d) { return d._id })
-                .call(Style[type]);
-        })
-    }
-
-    function updateNodes(nodes) {
+    function nodes(svgContainer, _nodes) {
         // Update the nodes
         var node = svgContainer.selectAll("g.node")
-            .data(nodes, function(d) { return d._id });
+            .data(_nodes, function(d) { return d._id });
 
         var nodeEnter = node.enter().append("svg:g")
             .attr('class', function(d){ return 'node ' + d.icon })
@@ -63,10 +37,22 @@ var Display = function(svgContainer, config) {
         return node;
     }
 
+    function nodeOverlays(svgContainer, graph) {
+        var types = ['focus', 'crossOut', "disable"];
+        var nodes = svgContainer.selectAll("g.node");
+
+        types.forEach(function(type) {
+            nodes
+                .data(graph.metaItems(type), function(d) { return d._id })
+                .call(Style[type]);
+        })
+    }
+
     // Update link connections between items.
     // @param[Array] linkData - formated linkData for d3.
     // @param[String] namespace - used to preserve grouping and uniqueness.
-    function updateLinks(linkData, namespace) {
+    function connectionLinks(svgContainer, linkData, namespace) {
+        var diagonal = d3.svg.diagonal().projection(function(d) { return [d.x, d.y]; });
         var classname = 'link-' + namespace;
         // Update the links.
         var link = svgContainer.selectAll("path." + classname)
@@ -93,15 +79,16 @@ var Display = function(svgContainer, config) {
         return link;
     }
 
-    // Similar to updateLinks but adds animated directional flow icons.
+    // Similar to connectionLinks but adds animated directional flow icons.
     // @param[Array] linkData - formated linkData for d3.
     // @param[String] namespace - used to preserve grouping and uniqueness.
     // @param[Boolean] reverse - set true to reverse animation direction.
-    function updateLivePaths(linkData, namespace, reverse) {
-        var pathData = updateLinks(linkData, namespace)
+    function livePaths(svgContainer, graph, namespace, reverse) {
+        var linkData = diagonalFocusPathLinks(graph);
+        var pathData = connectionLinks(svgContainer, linkData, namespace)
             .call(Style.pulsePath)
 
-        updateFlowIcons(linkData, pathData[0], namespace, reverse);
+        updateFlowIcons(svgContainer, linkData, pathData[0], namespace, reverse);
 
         return pathData;
     }
@@ -109,7 +96,7 @@ var Display = function(svgContainer, config) {
     // @param[Array] linkData - formated linkData for d3.
     // @param[Array] paths - actual SVG path DOM nodes required.
     // @param[String] namespace - used to preserve grouping and uniqueness.
-    function updateFlowIcons(linkData, paths, namespace, reverse) {
+    function updateFlowIcons(svgContainer, linkData, paths, namespace, reverse) {
         var markerData = [];
         paths.map(function(d, i) {
             if(d) {
@@ -163,4 +150,48 @@ var Display = function(svgContainer, config) {
 
         return markers;
     }
-};
+
+
+    // @return[Array] link data for building lines with d3.svg.diagonal().
+    function diagonalFocusPathLinks(graph) {
+        var links = [],
+            paths = [];
+
+        if (graph.metaItems('focusPath').length > 0) {
+            var paths = [graph.metaItems('focusPath')];
+        } else if (graph.meta('focusPaths')) {
+            var paths = graph.meta('focusPaths').map(function(path) {
+                return graph.findAll(path);
+            })
+        }
+
+        paths.forEach(function(path) {
+            links = links.concat(diagonalPathLinks(path));
+        })
+
+        return links;
+    }
+
+    // @param[Array] path - ordered item objects denoting desired path.
+    // @return[Array] link objects for the path for use with d3.svg.diagonal().
+    function diagonalPathLinks(path) {
+        var links = [];
+        path.forEach(function(d, i) {
+            if(path[i+1]) {
+                links.push({
+                    source: d,
+                    target: path[i+1]
+                });
+            }
+        })
+
+        return links;
+    }
+
+    return ({
+        nodes : nodes,
+        nodeOverlays : nodeOverlays,
+        connectionLinks : connectionLinks,
+        livePaths : livePaths
+    })
+})();

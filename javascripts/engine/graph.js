@@ -15,9 +15,11 @@ var Graph = function(items) {
 
     this.nodes = nodes;
     this.position = position;
+    this.connections = connections;
 
     var __dict__ = dictify(items),
-        __meta__ = {}
+        __meta__ = {},
+        __connectionLinks__ = []
     ;
 
     function meta(key) {
@@ -128,6 +130,27 @@ var Graph = function(items) {
 
     function nodes() {
         return d3.values(__dict__);
+    }
+
+    // @return[Array] link objects for all connections in a graph.
+    // For use with d3.svg.diagonal().
+    function connections(data) {
+        if(data) {
+            __connectionLinks__ = [];
+
+            for(key in data) {
+                if(get(key)) {
+                    getAll(data[key]).forEach(function(item) {
+                        __connectionLinks__.push({
+                            source: get(key),
+                            target: item
+                        });
+                    })
+                }
+            }
+        }
+
+        return __connectionLinks__;
     }
 
     // Private
