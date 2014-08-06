@@ -1,6 +1,6 @@
 var App = {
     course : function(course) {
-        var diagram = new Diagram(course.url);
+        var diagram = new Diagram(course);
 
         // Textual description
         var description = new Description("#description");

@@ -8,15 +8,18 @@
 // 
 // A Diagram consumes 'step instructions' which are loaded from a remote data-source.
 // We can ask the diagram to return a graph based on a given step index.
-// The diagram is lazily evaluated so a callback is always used:
+// The diagram is lazily evaluated so you must listen for the 'change' event:
 //
-//    var diagram = new Diagram('name-of-file');
-//    diagram.get(0, function(graph, index, page) {
+//    var diagram = new Diagram({ diagramUrl : '/diagram.json', contentUrl : '/content.json' });
+//    diagram.on('change', function(graph) {
         // Render the graph here.
 //    })
-var Diagram = function(endpoint) {
-    if(!endpoint) throw("Diagram endpoint is required");
-    this.endpoint = endpoint;
+//
+//    // Pragmatically get a step:
+//    diagram.get(0);
+var Diagram = function(config) {
+    if(!config) throw("Diagram endpoints are required");
+    this.config = config;
 
     var dispatch = d3.dispatch('change');
 
@@ -77,9 +80,9 @@ var Diagram = function(endpoint) {
             callback();
         }
         else {
-            d3.json(pathEndpoint(), function(pathData) {
+            d3.json(contentUrl(), function(pathData) {
                 if(pathData.course) {
-                    d3.json(dataEndpoint(), function(data) {
+                    d3.json(diagramUrl(), function(data) {
                         if(data) {
 
                             parsePath(pathData.course);
@@ -92,13 +95,13 @@ var Diagram = function(endpoint) {
                             callback();
                         }
                         else {
-                            throw("Could not retrieve data from: " + dataEndpoint() );
+                            throw("Could not retrieve data from: " + diagramUrl() );
                         }
                     })
 
                 }
                 else {
-                    throw("Could not retrieve data from: " + pathEndpoint() );
+                    throw("Could not retrieve data from: " + contentUrl() );
                 }
             })
 
@@ -211,11 +214,11 @@ var Diagram = function(endpoint) {
         }
     }
 
-    function pathEndpoint() {
-        return '/courses-content/' + endpoint + '.json?' + Math.random();
+    function contentUrl() {
+        return config.contentUrl + '?' + Math.random();
     }
 
-    function dataEndpoint() {
-        return '/courses-diagrams/' + endpoint + '.json?' + Math.random();
+    function diagramUrl() {
+        return config.diagramUrl + '?' + Math.random();
     }
 }
