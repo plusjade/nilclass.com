@@ -118,15 +118,8 @@ var Display = (function() {
 
         var markersEnter = markers.enter().append("svg:g")
             .attr('class', namespace + ' flow-icon')
-            .append('use')
-                .attr('xlink:href', '/assets/media/icons.svg#flow-icon')
-                .attr('height', 20)
-                .attr('width', 20)
-                .attr('x', -10)
-                .attr('y', -10)
-                .attr('transform', function(d) {
-                    return 'rotate(' + (d.degree + (d.reverse ? 180 : 0)) + ')';
-                });
+            .call(Style.flowIcon)
+        ;
 
         markers.transition()
             .delay(400)

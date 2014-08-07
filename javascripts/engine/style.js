@@ -1,5 +1,8 @@
 var Style = {
     duration : 500,
+    svgUrl : '/assets/media/icons.svg'
+
+    ,
     text : function(nodes) {
         nodes.append("svg:text")
                 .attr('class', 'text-bg')
@@ -29,7 +32,7 @@ var Style = {
             .attr('r', 14)
 
         nodes.append('g').append('use')
-            .attr('xlink:href', function(d) { return '/assets/media/icons.svg#' + d.icon })
+            .attr('xlink:href', function(d) { return (Style.svgUrl + '#' + d.icon) })
             .attr('class', function(d) { return "icon " + d.icon })
             .attr('height', function(d) {
                 return d.depth > 0 ? 20 : 30;
@@ -117,7 +120,7 @@ var Style = {
     crossOut : function(nodes) {
         var size = 30;
         var nodesEnter = nodes.append('use')
-            .attr('xlink:href', '/assets/media/icons.svg#cross-out')
+            .attr('xlink:href', (Style.svgUrl + '#cross-out'))
             .attr('class', 'cross-out')
             .attr('x', -(size/2))
             .attr('y', -(size/2))
@@ -150,6 +153,21 @@ var Style = {
             .transition()
                 .duration(Style.duration)
                 .style('stroke-width', 2)
+
+        return nodes;
+    }
+
+    ,
+    flowIcon : function(nodes) {
+        nodes.append('use')
+            .attr('xlink:href', (Style.svgUrl + '#flow-icon'))
+            .attr('height', 20)
+            .attr('width', 20)
+            .attr('x', -10)
+            .attr('y', -10)
+            .attr('transform', function(d) {
+                return 'rotate(' + (d.degree + (d.reverse ? 180 : 0)) + ')';
+            });
 
         return nodes;
     }
