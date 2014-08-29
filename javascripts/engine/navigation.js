@@ -8,23 +8,25 @@ NIL.Navigation = function(config) {
         tableOfContents = new NIL.TableOfContents(config.tocSelector, config.stepToggleSelector)
     ;
 
-    config.diagram.steps(function(steps) {
-        draw();
+    config.diagram.on('loaded', function() {
+        config.diagram.steps(function(steps) {
+            draw();
 
-        tableOfContents.updateList(steps)
-            .on('click', function(d, i) {
-                d3.event.preventDefault();
-                navigate(i);
-                tableOfContents.hide();
-            })
+            tableOfContents.updateList(steps)
+                .on('click', function(d, i) {
+                    d3.event.preventDefault();
+                    navigate(i);
+                    tableOfContents.hide();
+                })
 
-        d3.select("body")
-            .on("keydown", function(){
-                if(d3.event.keyCode === 39) // right arrow
-                    next();
-                else if(d3.event.keyCode === 37) // left arrow
-                    previous();
-            })
+            d3.select("body")
+                .on("keydown", function(){
+                    if(d3.event.keyCode === 39) // right arrow
+                        next();
+                    else if(d3.event.keyCode === 37) // left arrow
+                        previous();
+                })
+        })
     })
 
     function update(index, total) {

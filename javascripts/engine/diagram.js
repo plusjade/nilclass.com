@@ -22,7 +22,7 @@ NIL.Diagram = function(config) {
     if(!config.iconsUrl) throw("'iconsUrl' endpoint is required");
     this.config = config;
 
-    var dispatch = d3.dispatch('change');
+    var dispatch = d3.dispatch('loaded', 'change');
 
     // Add event listeners.
     this.on = function(type, listener) {
@@ -93,6 +93,7 @@ NIL.Diagram = function(config) {
                                 path.diagramStepIndex = Urls[path.diagramStep];
                             })
 
+                            dispatch.loaded();
                             callback();
                         }
                         else {
