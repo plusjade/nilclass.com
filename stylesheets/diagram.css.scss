@@ -2,12 +2,11 @@ $background-color: #FFF;
 $primary-border-color: #ccc;
 $alt-background-color: #FBF8F5;
 
-body.visualizer {
+#world {
   .node {
     text {
       font-size: 12px;
-      font-family: courier;
-      fill: #455a64;
+      fill: #907F76;
       fill-opacity: 1;
       &.text-bg {
         fill : none;
@@ -55,7 +54,7 @@ body.visualizer {
   path {
     &.link-connect {
       fill: none;
-      stroke: #CCC;
+      stroke: #d3cdca;
       stroke-width: 1.5px;
       stroke-dasharray: 3, 3;
       &.public {
@@ -69,33 +68,49 @@ body.visualizer {
     }
   }
 
+/*
+http://www.colourlovers.com/palette/848743/(%E2%97%95_%E2%80%9D_%E2%97%95)
+http://www.colourlovers.com/palette/3443395/sugary
+*/
   .icon {
-    fill: #333;
+    fill: #490A3D;
     &.web-browser {
-      fill: #228DFF;
+
     }
     &.wifi-high {
-      fill: #FF0092;
+      fill: #F8CA00;
     }
     &.browser-2 {
       fill: #772A53;
     }
+    &.database {
+      fill: #E97F02;
+    }
+    &.software {
+      fill: #4EC09F;
+      stroke: #39a284;
+      stroke-width: 5px;
+    }
+    &.document,
+    &.filesystem,
+    &.documents-code,
+    &.document-html,
+    &.document-pdf,
+    &.image,
+    &.video-2 {
+      fill: #8A9B0F;
+    }
+    &.server2 {
+      fill: #BD1550;
+    }
     &.menu {
       fill: #0D6759;
-    }
-    &.database {
-      fill: #FA3C08;
     }
     &.endpoint {
       fill: #444;
     }
     &.exchange {
       fill: #777;
-    }
-    &.software {
-      fill: #F4DD51;
-      stroke: #E6AC27;
-      stroke-width: 5px;
     }
   }
   .flow-icon {
