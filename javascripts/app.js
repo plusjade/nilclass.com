@@ -1,9 +1,9 @@
 var App = {
     course : function(course) {
-        var diagram = new Diagram(course);
+        var diagram = new NIL.Diagram(course);
 
         // Textual description
-        var description = new Description("#description");
+        var description = new NIL.Description("#description");
 
         // SVG visualization
         var world = d3.select('body').append('div').attr('id', 'world')
@@ -13,7 +13,7 @@ var App = {
         ;
 
         // Navigation components
-        var navigation = new Navigation({
+        var navigation = new NIL.Navigation({
             diagram : diagram,
             selector : '#prev-next',
             tocSelector : '#table-of-contents',
@@ -23,10 +23,10 @@ var App = {
         diagram.on('change', function(graph) {
             description.update(graph.meta('title'), graph.meta('content'));
 
-            Display.nodes(world, graph.nodes());
-            Display.nodeOverlays(world, graph);
-            Display.connectionLinks(world, graph.connections(), 'connect');
-            Display.livePaths(world, graph, 'focusPath');
+            NIL.Display.nodes(world, graph.nodes());
+            NIL.Display.nodeOverlays(world, graph);
+            NIL.Display.connectionLinks(world, graph.connections(), 'connect');
+            NIL.Display.livePaths(world, graph, 'focusPath');
 
             navigation.update(graph.meta('index'), graph.meta('total'));
         })

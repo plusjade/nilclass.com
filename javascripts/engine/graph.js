@@ -1,5 +1,5 @@
 // The Graph object models our data format as a graph of nodes/items and connections.
-var Graph = function(items) {
+NIL.Graph = function(items) {
     this.get = get;
     this.getAll = getAll;
     this.find = find;

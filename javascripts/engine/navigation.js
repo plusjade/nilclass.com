@@ -1,11 +1,11 @@
-var Navigation = function(config) {
+NIL.Navigation = function(config) {
     this.next = next;
     this.previous = previous;
     this.navigate = navigate;
     this.update = update;
 
     var current = 0,
-        tableOfContents = new TableOfContents(config.tocSelector, config.stepToggleSelector)
+        tableOfContents = new NIL.TableOfContents(config.tocSelector, config.stepToggleSelector)
     ;
 
     config.diagram.steps(function(steps) {

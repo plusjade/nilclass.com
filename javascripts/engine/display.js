@@ -1,5 +1,5 @@
 // Display a <Graph> using d3.
-var Display = (function() {
+NIL.Display = (function() {
     var config = { duration : 500 };
 
     function nodes(svgContainer, _nodes) {
@@ -13,13 +13,13 @@ var Display = (function() {
                 return "translate(" + (d.x0 || 0) + "," + (d.y0 || 0) + ")";
             })
 
-        nodeEnter.call(Style.icon);
+        nodeEnter.call(NIL.Style.icon);
 
         nodeEnter
             .filter(function(d) { return !!d.text })
-            .call(Style.text)
+            .call(NIL.Style.text)
 
-        nodeEnter.call(Style.labels);
+        nodeEnter.call(NIL.Style.labels);
 
         // Transition nodes to their new position.
         var nodeUpdate = node.transition()
@@ -44,7 +44,7 @@ var Display = (function() {
         types.forEach(function(type) {
             nodes
                 .data(graph.metaItems(type), function(d) { return d._id })
-                .call(Style[type]);
+                .call(NIL.Style[type]);
         })
     }
 
@@ -86,7 +86,7 @@ var Display = (function() {
     function livePaths(svgContainer, graph, namespace, reverse) {
         var linkData = diagonalFocusPathLinks(graph);
         var pathData = connectionLinks(svgContainer, linkData, namespace)
-            .call(Style.pulsePath)
+            .call(NIL.Style.pulsePath)
 
         updateFlowIcons(svgContainer, linkData, pathData[0], namespace, reverse);
 
@@ -118,7 +118,7 @@ var Display = (function() {
 
         var markersEnter = markers.enter().append("svg:g")
             .attr('class', namespace + ' flow-icon')
-            .call(Style.flowIcon)
+            .call(NIL.Style.flowIcon)
         ;
 
         markers.transition()

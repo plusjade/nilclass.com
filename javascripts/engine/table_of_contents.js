@@ -1,4 +1,4 @@
-var TableOfContents = function(containerSelector, stepToggleSelector) {
+NIL.TableOfContents = function(containerSelector, stepToggleSelector) {
     this.show = show;
     this.hide = hide;
     this.highlight = highlight;

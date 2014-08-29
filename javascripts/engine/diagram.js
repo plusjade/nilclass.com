@@ -10,14 +10,14 @@
 // We can ask the diagram to return a graph based on a given step index.
 // The diagram is lazily evaluated so you must listen for the 'change' event:
 //
-//    var diagram = new Diagram({ diagramUrl : '/diagram.json', contentUrl : '/content.json' });
+//    var diagram = new NIL.Diagram({ diagramUrl : '/diagram.json', contentUrl : '/content.json' });
 //    diagram.on('change', function(graph) {
         // Render the graph here.
 //    })
 //
 //    // Pragmatically get a step:
 //    diagram.get(0);
-var Diagram = function(config) {
+NIL.Diagram = function(config) {
     if(!config) throw("Diagram endpoints are required");
     this.config = config;
 
@@ -152,7 +152,7 @@ var Diagram = function(config) {
                           }, {});
 
         var items = JSON.parse(JSON.stringify(steps.shift().actions[0].items)),
-            graph = new Graph(items),
+            graph = new NIL.Graph(items),
             metadata = {};
 
         // Note this process mutates the graph object in place.

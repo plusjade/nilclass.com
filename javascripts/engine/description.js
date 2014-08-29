@@ -1,4 +1,4 @@
-var Description = function(selector) {
+NIL.Description = function(selector) {
     this.update = update;
 
     var node = d3.select('body')

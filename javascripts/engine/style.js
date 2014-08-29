@@ -1,4 +1,4 @@
-var Style = {
+NIL.Style = {
     duration : 500,
     svgUrl : '/assets/media/icons.svg'
 
@@ -32,7 +32,7 @@ var Style = {
             .attr('r', 14)
 
         nodes.append('g').append('use')
-            .attr('xlink:href', function(d) { return (Style.svgUrl + '#' + d.icon) })
+            .attr('xlink:href', function(d) { return (NIL.Style.svgUrl + '#' + d.icon) })
             .attr('class', function(d) { return "icon " + d.icon })
             .attr('height', function(d) {
                 return d.depth > 0 ? 20 : 30;
@@ -41,7 +41,7 @@ var Style = {
                 return d.depth > 0 ? 20 : 30;
             })
 
-        nodes.call(Style.clicker);
+        nodes.call(NIL.Style.clicker);
 
         return nodes;
     }
@@ -65,20 +65,20 @@ var Style = {
     focus : function(nodes) {
         nodes.selectAll("use")
             .transition()
-            .duration(Style.duration)
+            .duration(NIL.Style.duration)
                 .attr('x', -30)
                 .attr('y', -30)
                 .attr('height', 60)
                 .attr('width', 60)
             .transition()
-            .duration(Style.duration)
+            .duration(NIL.Style.duration)
                 .attr('x', -25)
                 .attr('y', -25)
                 .attr('height', 50)
                 .attr('width', 50)
 
         nodes.exit().selectAll("use").transition()
-            .duration(Style.duration)
+            .duration(NIL.Style.duration)
                 .attr('x', -15)
                 .attr('y', -15)
                 .attr('height', 30)
@@ -86,30 +86,30 @@ var Style = {
 
         nodes.selectAll("circle.software")
             .transition()
-                .duration(Style.duration)
+                .duration(NIL.Style.duration)
                 .attr('r', 20)
             .transition()
-                .duration(Style.duration)
+                .duration(NIL.Style.duration)
                 .attr('r', 16)
 
 
         nodes.exit().selectAll("circle.software").transition()
-            .duration(Style.duration)
+            .duration(NIL.Style.duration)
             .attr('r', 8)
 
         nodes.insert('svg:circle', 'g')
             .attr('class', 'focus')
             .attr('r', 0)
             .transition()
-                .duration(Style.duration)
+                .duration(NIL.Style.duration)
                 .attr('r', 60)
             .transition()
-                .duration(Style.duration)
+                .duration(NIL.Style.duration)
                 .attr('r', 50)
 
 
         nodes.exit().selectAll("circle.focus").transition()
-            .duration(Style.duration)
+            .duration(NIL.Style.duration)
             .attr('r', 0)
             .remove()
 
@@ -120,7 +120,7 @@ var Style = {
     crossOut : function(nodes) {
         var size = 30;
         var nodesEnter = nodes.append('use')
-            .attr('xlink:href', (Style.svgUrl + '#cross-out'))
+            .attr('xlink:href', (NIL.Style.svgUrl + '#cross-out'))
             .attr('class', 'cross-out')
             .attr('x', -(size/2))
             .attr('y', -(size/2))
@@ -147,11 +147,11 @@ var Style = {
     pulsePath : function(nodes) {
         nodes
             .transition()
-                .duration(Style.duration)
+                .duration(NIL.Style.duration)
                 .style('stroke-opacity', 1)
                 .style('stroke-width', 4)
             .transition()
-                .duration(Style.duration)
+                .duration(NIL.Style.duration)
                 .style('stroke-width', 2)
 
         return nodes;
@@ -160,7 +160,7 @@ var Style = {
     ,
     flowIcon : function(nodes) {
         nodes.append('use')
-            .attr('xlink:href', (Style.svgUrl + '#flow-icon'))
+            .attr('xlink:href', (NIL.Style.svgUrl + '#flow-icon'))
             .attr('height', 20)
             .attr('width', 20)
             .attr('x', -10)
