@@ -1,5 +1,7 @@
-PATH
-  remote: /Users/jade/Dropbox/gems/ruhoh
+GIT
+  remote: https://github.com/ruhoh/ruhoh.rb.git
+  revision: 4255bb183bf079c9d109329874145325636c556c
+  branch: 3.0-nilclass-hacks
   specs:
     ruhoh (3.0)
       directory_watcher (~> 1.4.0)
@@ -9,8 +11,9 @@ PATH
       redcarpet (~> 2.1)
       silly (~> 0)
 
-PATH
-  remote: /Users/jade/Dropbox/gems/silly
+GIT
+  remote: https://github.com/ruhoh/silly.git
+  revision: 99db20f039ac47a9a4f523fc65e7025a8743b699
   specs:
     silly (0.0.2)
       mime-types (~> 2.1)
@@ -52,5 +55,5 @@ DEPENDENCIES
   haml
   ruhoh!
   sass
-  silly!
+  silly (~> 0)!
   sprockets (~> 2.9)

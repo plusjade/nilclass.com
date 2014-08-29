@@ -1,3 +1,4 @@
+Silly.add_html_extensions(['nilclass'])
 class Ruhoh
   module Converter
     module Presentation
