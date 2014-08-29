@@ -16,14 +16,13 @@
         font-family: 'Nunito', sans-serif;
       }
     = javascripts.load("offline/d3.v3.min.js")
+    = javascripts.load("application.js")
     - if env == "production"
       = partial("heap.html")
     - else
       = javascripts.load("offline/stacktrace.js")
   %body.visualizer
     = partial("newsletter.html")
-
-    = javascripts.load("application.js")
     :javascript
       NIL.course(#{ page.course.to_json });
 
