@@ -19,6 +19,7 @@
 //    diagram.get(0);
 NIL.Diagram = function(config) {
     if(!config) throw("Diagram endpoints are required");
+    if(!config.iconsUrl) throw("'iconsUrl' endpoint is required");
     this.config = config;
 
     var dispatch = d3.dispatch('change');
@@ -152,7 +153,7 @@ NIL.Diagram = function(config) {
                           }, {});
 
         var items = JSON.parse(JSON.stringify(steps.shift().actions[0].items)),
-            graph = new NIL.Graph(items),
+            graph = new NIL.Graph(processItems(items)),
             metadata = {};
 
         // Note this process mutates the graph object in place.
@@ -192,7 +193,7 @@ NIL.Diagram = function(config) {
 
             switch (action.method) {
                 case "add":
-                    graph.add(action.items);
+                    graph.add(processItems(action.items));
                     break;
                 case "update":
                     graph.update(action.items);
@@ -205,6 +206,13 @@ NIL.Diagram = function(config) {
         })
 
         return graph;
+    }
+
+    function processItems(items) {
+        items.forEach(function(d) {
+            d.iconsUrl = config.iconsUrl;
+        })
+        return items;
     }
 
     function verifyMethod(method) {

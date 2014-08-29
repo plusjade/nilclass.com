@@ -1,7 +1,5 @@
 NIL.Style = {
-    duration : 500,
-    svgUrl : '/assets/media/icons.svg'
-
+    duration : 500
     ,
     text : function(nodes) {
         nodes.append("svg:text")
@@ -32,7 +30,7 @@ NIL.Style = {
             .attr('r', 14)
 
         nodes.append('g').append('use')
-            .attr('xlink:href', function(d) { return (NIL.Style.svgUrl + '#' + d.icon) })
+            .attr('xlink:href', function(d) { return (d.iconsUrl + '#' + d.icon) })
             .attr('class', function(d) { return "icon " + d.icon })
             .attr('height', function(d) {
                 return d.depth > 0 ? 20 : 30;
@@ -120,7 +118,7 @@ NIL.Style = {
     crossOut : function(nodes) {
         var size = 30;
         var nodesEnter = nodes.append('use')
-            .attr('xlink:href', (NIL.Style.svgUrl + '#cross-out'))
+            .attr('xlink:href', function(d) { return (d.iconsUrl + '#cross-out') })
             .attr('class', 'cross-out')
             .attr('x', -(size/2))
             .attr('y', -(size/2))
@@ -160,7 +158,7 @@ NIL.Style = {
     ,
     flowIcon : function(nodes) {
         nodes.append('use')
-            .attr('xlink:href', (NIL.Style.svgUrl + '#flow-icon'))
+            .attr('xlink:href', function(d) { return (d.iconsUrl + '#flow-icon') })
             .attr('height', 20)
             .attr('width', 20)
             .attr('x', -10)

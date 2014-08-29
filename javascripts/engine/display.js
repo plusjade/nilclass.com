@@ -108,6 +108,7 @@ NIL.Display = (function() {
                     path: d,
                     degree : degree,
                     reverse : reverse,
+                    iconsUrl : linkData[i].source.iconsUrl,
                     _id : (linkData[i].source._id + linkData[i].target._id + namespace)
                 });
             }
