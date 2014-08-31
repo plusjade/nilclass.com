@@ -4,7 +4,7 @@ permalink: "courses-content/how-websites-work.json"
 
 # How Websites Work.
 {
-    "diagramStep" : "start",
+    "diagramState" : "start",
     "focus" : "You"
 }
 
@@ -16,21 +16,21 @@ Follow along as we go behind the scenes and visually explore how web sites work 
 
 # Web pages are viewed using a software-progam called a web-browser.
 {
-    "diagramStep" : "web-browser",
+    "diagramState" : "web-browser",
     "focus" : "Web Browser",
     "focusPath" : ["You", "Web Browser"]
 }
 
 # Web browsers run on your laptop or smartphone just like Excel or Photoshop.
 {
-    "diagramStep" : "web-browser-platforms",
+    "diagramState" : "web-browser-platforms",
     "focus" : ["Laptop", "Phone", "Tablet"]
 }
 
 
 # The web browser downloads content over the Internet.
 {
-    "diagramStep" : "internet",
+    "diagramState" : "internet",
     "focus" : "Internet",
     "focusPaths" : [
         ["You", "Laptop", "Internet", "HTML"],
@@ -41,45 +41,45 @@ Follow along as we go behind the scenes and visually explore how web sites work 
 
 # Web browsers can download and stream media like text, images, pdfs, movies, and music.
 {
-    "diagramStep" : "internet",
+    "diagramState" : "internet",
     "focus" : ["HTML", "Image", "Video"]
 }
 
 # This content is stored on other computers called servers.
 {
-    "diagramStep" : "server",
+    "diagramState" : "server",
     "focus" : "Server"
 }
 
 # A server is just a computer. It contains files in its filesystem just like the files and folders on your personal computer.
 {
-    "diagramStep" : "server",
+    "diagramState" : "server",
     "focus" : "Filesystem"
 }
 
 # Technically, this entire network of computers is the Internet. The Internet icon simply illustrates connections within the network.
 {
-    "diagramStep" : "server",
+    "diagramState" : "server",
     "focus" : ["Phone", "Laptop", "Tablet", "Internet", "Server"]
 }
 
 
 # Servers that accept Internet requests are called Web Servers.
 {
-    "diagramStep" : "server",
+    "diagramState" : "server",
     "focus" : "Server",
     "focusPath" : ["You", "Laptop", "Internet", "Server"]
 }
 
 # To accept Internet requests, the server runs a software program called a web-server.
 {
-    "diagramStep" : "static-server",
+    "diagramState" : "static-server",
     "focus" : "Web Server"
 }
 
 # The web-server software dictates which files and programs are OK to be accessed from the Internet.
 {
-    "diagramStep" : "static-server",
+    "diagramState" : "static-server",
     "focusPaths" : [
         ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"],
         ["Filesystem", "HTML"],
@@ -90,14 +90,14 @@ Follow along as we go behind the scenes and visually explore how web sites work 
 
 # Servers have private files that should never be web accessible ...
 {
-    "diagramStep" : "security-gate",
+    "diagramState" : "security-gate",
     "focus" : ["Passwords", "Secrets"],
     "disable" : ["Passwords", "Secrets"]
 }
 
 # Therefore, web requests are handled only by the web-server acting as a kind of security gate.
 {
-    "diagramStep" : "security-gate",
+    "diagramState" : "security-gate",
     "focusPaths" : [
         ["You", "Laptop", "Internet", "Server", "Web Server"],
         ["Anna", "Phone", "Internet", "Server", "Web Server"]
@@ -107,14 +107,14 @@ Follow along as we go behind the scenes and visually explore how web sites work 
 
 # All web pages are just text. Even media like images, and video are encoded and sent as text-based files.
 {
-    "diagramStep" : "security-gate",
+    "diagramState" : "security-gate",
     "focus" : ["HTML", "Video", "Image"],
     "disable" : ["Passwords", "Secrets"]
 }
 
 # When a request comes in, the server processes the request and sends back text that describes the web-page you see.
 {
-    "diagramStep" : "security-gate",
+    "diagramState" : "security-gate",
     "focusPaths" : [
         ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"],
         ["Filesystem", "HTML"],
@@ -126,7 +126,7 @@ Follow along as we go behind the scenes and visually explore how web sites work 
 
 # The simplest way to send this content to the user is for the web-server to retrieve it from its own filesystem.
 {
-    "diagramStep" : "security-gate",
+    "diagramState" : "security-gate",
     "focus" : ["Filesystem"],
     "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"],
     "disable" : ["Passwords", "Secrets"]
@@ -134,30 +134,30 @@ Follow along as we go behind the scenes and visually explore how web sites work 
 
 # Does that mean Amazon.com has millions of product pages stored as files?
 {
-    "diagramStep" : "static-server-amazon",
+    "diagramState" : "static-server-amazon",
     "focus" : ["product-1","product-2","product-3","product-4"]
 }
 
 # Creating millions of product page files would take forever and be hard to maintain.
 {
-    "diagramStep" : "millions-pages"
+    "diagramState" : "millions-pages"
 }
 
 # Updating the product page layout would require changing every single file!
 {
-    "diagramStep" : "millions-pages",
+    "diagramState" : "millions-pages",
     "focus" : ["product-1","product-2","product-3","product-4", "product-5","product-6","product-7","product-8", "product-9","product-10","product-11","product-12"]
 }
 
 # A web application is a software program that can create pages on demand.
 {
-    "diagramStep" : "web-application",
+    "diagramState" : "web-application",
     "focus" : ["Application"]
 }
 
 # The web server is configured to route requests to the web application instead of serving files directly.
 {
-    "diagramStep" : "web-application",
+    "diagramState" : "web-application",
     "focus" : ["Web Server"],
     "focusPath" : ["Web Server", "Application"]
 }
@@ -165,34 +165,34 @@ Follow along as we go behind the scenes and visually explore how web sites work 
 
 # Web applications can read from a template file and build a custom page dynamically.
 {
-    "diagramStep" : "templates",
+    "diagramState" : "templates",
     "focus" : ["Templates"],
     "focusPath" : ["Application", "Templates"]
 }
 
 # This means web pages don't actually have to exist, an application can create them as needed.
 {
-    "diagramStep" : "templates",
+    "diagramState" : "templates",
     "focus" : ["Application"]
 }
 
 
 # A web application can interact with a database.
 {
-    "diagramStep" : "database",
+    "diagramState" : "database",
     "focus" : "Database",
     "focusPath" : ["Application", "Templates", "Database"]
 }
 
 # A database is a software program installed on the server that helps with efficiently storing and accessing data.
 {
-    "diagramStep" : "database",
+    "diagramState" : "database",
     "focus" : "Database"
 }
 
 # We can use a database to store Amazon's millions of products as data: description, price, sizes, images.
 {
-    "diagramStep" : "database-data",
+    "diagramState" : "database-data",
     "focus" : ["Product 1", "Product 2", "Product 3", "Product 4"],
     "focusPaths" : [
         ["Database", "Product 1"],
@@ -204,58 +204,58 @@ Follow along as we go behind the scenes and visually explore how web sites work 
 
 # The web application queries the database to populate its templates.
 {
-    "diagramStep" : "database-data",
+    "diagramState" : "database-data",
     "focus" : "Templates",
     "focusPath" : ["Application", "Templates", "Database", "Product 1"]
 }
 
 # The product data is used to populate a page template that has placeholder values like {price}, {description}, etc.
 {
-    "diagramStep" : "database-data",
+    "diagramState" : "database-data",
     "focus" : "Templates"
 }
 
 # Now if you want change the product template, you only have to change one file. =)
 {
-    "diagramStep" : "database-data",
+    "diagramState" : "database-data",
     "focus" : "Templates"
 }
 
 # Our software programs have been running on one physical server. Each server has physical limits in how many requests it can handle.
 {
-    "diagramStep" : "database-data",
+    "diagramState" : "database-data",
     "focus" : ["Server", "Web Server", "Database", "Application"]
 }
 
 # To handle more requests, or scale your application, you can move your database software to its own dedicated database server.
 {
-    "diagramStep" : "dedicated-database",
+    "diagramState" : "dedicated-database",
     "focus" : "Database Server"
 }
 
 
 # Now your app server can concentrate on serving web-requests,
 {
-    "diagramStep" : "dedicated-database",
+    "diagramState" : "dedicated-database",
     "focus" : "Server"
 }
 
 # While your database-server gets more computing power to manage the database.
 {
-    "diagramStep" : "dedicated-database",
+    "diagramState" : "dedicated-database",
     "focus" : "Database Server"
 }
 
 
 # One lonely server may be a bottleneck.
 {
-    "diagramStep" : "dedicated-database",
+    "diagramState" : "dedicated-database",
     "focus" : "Server"
 }
 
 # The application server is no longer handling the database load, but it is still solely responsible for **ALL** requests =/.
 {
-    "diagramStep" : "dedicated-database",
+    "diagramState" : "dedicated-database",
     "focus" : "Server",
     "focusPaths" : [
         ["Anna", "Phone Web Browser", "Phone", "Internet", "Server"],
@@ -267,13 +267,13 @@ Follow along as we go behind the scenes and visually explore how web sites work 
 
 # We can help this poor server out by adding more of his friends to share the load.
 {
-    "diagramStep" : "multi-app-architecture",
+    "diagramState" : "multi-app-architecture",
     "focus" : ["Server", "Server (clone 1)", "Server (clone 2)"]
 }
 
 # Multiple application servers distribute the request load.
 {
-    "diagramStep" : "multi-app-architecture",
+    "diagramState" : "multi-app-architecture",
     "focusPaths" : [
         ["Anna", "Phone Web Browser", "Phone", "Internet", "Server (clone 2)"],
         ["You", "Web Browser", "Laptop", "Internet", "Server (clone 1)"],
@@ -284,7 +284,7 @@ Follow along as we go behind the scenes and visually explore how web sites work 
 
 # How do we send requests to the new servers?
 {
-    "diagramStep" : "multi-app-architecture",
+    "diagramState" : "multi-app-architecture",
     "focusPaths" : [
         ["Anna", "Phone Web Browser", "Phone", "Internet", "Server (clone 2)"],
         ["You", "Web Browser", "Laptop", "Internet", "Server (clone 1)"],
@@ -294,13 +294,13 @@ Follow along as we go behind the scenes and visually explore how web sites work 
 
 # A reverse-proxy server delegates requests across multiple application servers.
 {
-    "diagramStep" : "reverse-proxy",
+    "diagramState" : "reverse-proxy",
     "focus" : "Reverse Proxy"
 }
 
 # The reverse-proxy is inserted before our app-servers so requests go directly to the reverse-proxy.
 {
-    "diagramStep" : "reverse-proxy",
+    "diagramState" : "reverse-proxy",
     "focus" : "Reverse Proxy",
     "focusPaths" : [
         ["Anna", "Phone Web Browser", "Phone", "Internet", "Reverse Proxy"],
@@ -311,13 +311,13 @@ Follow along as we go behind the scenes and visually explore how web sites work 
 
 # The reverse proxy runs its own web server software program.
 {
-    "diagramStep" : "reverse-proxy-web-server",
+    "diagramState" : "reverse-proxy-web-server",
     "focus" : "reverse-proxy-web-server"
 }
 
 # The web server on the reverse proxy server is configured to route requests to other servers.
 {
-    "diagramStep" : "reverse-proxy-web-server",
+    "diagramState" : "reverse-proxy-web-server",
     "focusPaths" : [
         ["reverse-proxy-web-server", "Server"],
         ["reverse-proxy-web-server", "Server (clone 1)"],
@@ -331,7 +331,7 @@ Find out more here: <a href="http://stackoverflow.com/a/366212/101940">http://st
 
 # Using many small application servers is known as scaling horizontally.
 {
-    "diagramStep" : "reverse-proxy-web-server",
+    "diagramState" : "reverse-proxy-web-server",
     "focus" : ["Server", "Server (clone 1)", "Server (clone 2)"],
     "focusPaths" : [
         ["Anna", "Phone Web Browser", "Phone", "Internet", "Reverse Proxy", "reverse-proxy-web-server", "Server"],
@@ -342,20 +342,20 @@ Find out more here: <a href="http://stackoverflow.com/a/366212/101940">http://st
 
 # Scaling horizontally is usually cost effective -- it's cheaper to buy many commodity servers than a few powerful servers.
 {
-    "diagramStep" : "reverse-proxy-web-server"
+    "diagramState" : "reverse-proxy-web-server"
 }
 
 
 # Scaling horizontally mitigates risk.
 {
-    "diagramStep" : "reverse-proxy-web-server",
+    "diagramState" : "reverse-proxy-web-server",
     "crossOut" : ["Server"],
     "disable" : ["Web Server", "Application", "Templates", "Filesystem"]
 }
 
 # Many servers means some can fail and the others will pick up the load.
 {
-    "diagramStep" : "reverse-proxy-web-server",
+    "diagramState" : "reverse-proxy-web-server",
     "focusPaths" : [
         ["Anna", "Phone Web Browser", "Phone", "Internet", "Reverse Proxy", "reverse-proxy-web-server", "Server (clone 1)"],
         ["You", "Web Browser", "Laptop", "Internet", "Reverse Proxy", "reverse-proxy-web-server", "Server (clone 1)"],
@@ -369,7 +369,7 @@ Find out more here: <a href="http://stackoverflow.com/a/366212/101940">http://st
 
 # A centralized database server maintains data integrity across application servers.
 {
-    "diagramStep" : "reverse-proxy-web-server",
+    "diagramState" : "reverse-proxy-web-server",
     "focus" : ["Database Server"],
     "focusPaths" : [
         ["Application", "Database Server"],
@@ -380,7 +380,7 @@ Find out more here: <a href="http://stackoverflow.com/a/366212/101940">http://st
 
 # This solves the case where a user's request will be handled by app1 first, then another request by the same user is handled by app2. 
 {
-    "diagramStep" : "reverse-proxy-web-server",
+    "diagramState" : "reverse-proxy-web-server",
     "focus" : ["Database Server"],
     "focusPaths" : [
         ["Server", "Web Server", "Application", "Database Server"],
@@ -392,7 +392,7 @@ Find out more here: <a href="http://stackoverflow.com/a/366212/101940">http://st
 
 # The end
 {
-    "diagramStep" : "reverse-proxy-web-server",
+    "diagramState" : "reverse-proxy-web-server",
     "focus" : ["You"]
 }
 

@@ -1,13 +1,14 @@
 // A <Diagram> is the highest level model representation of a data visualization.
-// A Diagram has many <Steps>s where a step represents a specific, navigatigable state of a Diagram.
-// A Step models instructions for building the Diagram at a particular state.
-// Steps produce <Graph>s.
+// A Diagram has many <States>s where a state represents a specific, navigatigable state of a Diagram.
+// A State models instructions for building the Diagram at a particular state.
+// States produce <Graph>s.
 // A Graph models the actual graphical elements and coordinates used by d3 to create the visualization.
 // 
 // Usage:
 // 
-// A Diagram consumes 'step instructions' which are loaded from a remote data-source.
-// We can ask the diagram to return a graph based on a given step index.
+// A Diagram consumes 'state instructions' which are loaded from a remote data-source.
+// We can ask the diagram to return a graph based on a given courseStep index.
+// Each courseStep references a diagram state.
 // The diagram is lazily evaluated so you must listen for the 'change' event:
 //
 //    var diagram = new NIL.Diagram({ diagramUrl : '/diagram.json', contentUrl : '/content.json' });
@@ -15,7 +16,7 @@
         // Render the graph here.
 //    })
 //
-//    // Pragmatically get a step:
+//    // Pragmatically get a courseStep:
 //    diagram.get(0);
 NIL.Diagram = function(config) {
     if(!config) throw("Diagram endpoints are required");
@@ -29,14 +30,14 @@ NIL.Diagram = function(config) {
         dispatch.on(type, listener);
     }
 
-    // Get graph at <index>.
+    // Get graph at courseStep <index>.
     this.get = function(index) {
         resolve(function() {
             getGraph(index);
         })
     }
 
-    // Get graph at <index> where <index> is coerced to remain within step bounds.
+    // Get graph at courseStep <index> where <index> is coerced to remain within courseStep bounds.
     this.getBounded = function(index) {
         resolve(function() {
             index = boundedIndex(index);
@@ -44,21 +45,12 @@ NIL.Diagram = function(config) {
         })
     }
 
-    // Get graph by step slug.
-    this.getByStepName = function(slug) {
-        resolve(function() {
-            var index = Pages[slug] || 0;
-
-            getGraph(index);
-        })
-    }
-
-    // Get all path steps.
+    // Get all courseSteps.
     // The callback receives:
-    //  [Array] - steps. An ordered list of path steps.
-    this.steps = function(callback) {
+    //  [Array] - courseSteps. An ordered list of courseSteps.
+    this.courseSteps = function(callback) {
         resolve(function() {
-            callback( Paths.map(function(d) {
+            callback( CourseSteps.map(function(d) {
                 return { slug: d.slug, title: d.title };
             }) )
         })
@@ -67,30 +59,30 @@ NIL.Diagram = function(config) {
     // PRIVATE
     // Private functions assume the data has loaded.
 
-    var AllowedMethods = ['add', 'insert', 'update', 'remove'],
-        Steps,
-        Paths,
-        Urls = {},
-        Pages = {};
+    var AllowedMethods = ['add', 'update', 'remove'],
+        States,
+        CourseSteps,
+        StateIds = {}
+    ;
 
     // Resolve the state (data) of the diagram.
     // Data comes from a remote source so every public function should
     // execute its logic as a callback to resolve();
     function resolve(callback) {
-        if(Paths) {
+        if(CourseSteps) {
             callback();
         }
         else {
-            d3.json(contentUrl(), function(pathData) {
-                if(pathData.course) {
-                    d3.json(diagramUrl(), function(data) {
-                        if(data) {
+            d3.json(contentUrl(), function(courseData) {
+                if(courseData.course) {
+                    d3.json(diagramUrl(), function(diagramData) {
+                        if(diagramData) {
+                            States = diagramData.states;
+                            processStateIds(diagramData.states);
 
-                            parsePath(pathData.course);
-                            parseSteps(data);
-
-                            Paths.forEach(function(path) {
-                                path.diagramStepIndex = Urls[path.diagramStep];
+                            CourseSteps = courseData.course.steps;
+                            CourseSteps.forEach(function(step) {
+                                step.diagramStateIndex = StateIds[step.diagramState];
                             })
 
                             dispatch.loaded();
@@ -110,63 +102,53 @@ NIL.Diagram = function(config) {
         }
     }
 
-    function parsePath(data) {
-        Paths = data.steps;
-        Paths.forEach(function(step, i) {
-            if(step.slug) {
-                Pages[step.slug] = i;
+    function processStateIds(states) {
+        states.forEach(function(state, i) {
+            if(state.diagramState) {
+                StateIds[state.diagramState] = i;
             }
         })
     }
 
-    function parseSteps(data) {
-        Steps = data.steps;
-        Steps.forEach(function(step, i) {
-            if(step.diagramStep) {
-                Urls[step.diagramStep] = i;
-            }
-        })
-    }
-
-    // This is asking me for a path index.
+    // This is asking me for a courseStep index.
     // diagrams are index dependent based on building the graph.
-    // Example: Path[0] -> Step[2]
+    // Example: CourseSteps[0] -> States[2]
     // The graph is not directly returned, rather it is emitted on the 'change' event.
     // ex: diagram.on('change', function(graph) {});
     function getGraph(index) {
-        var stepIndex = Paths[index].diagramStepIndex,
-            steps = Steps.slice(0, stepIndex+1);
-        var positions = steps.reduce(function(accumulator, step) {
-                            if(step.positions) {
-                                for(key in step.positions) {
-                                    accumulator[key] = step.positions[key];
+        var stateIndex = CourseSteps[index].diagramStateIndex,
+            states = States.slice(0, stateIndex+1);
+        var positions = states.reduce(function(accumulator, state) {
+                            if(state.positions) {
+                                for(key in state.positions) {
+                                    accumulator[key] = state.positions[key];
                                 }
                             }
                             return accumulator;
                           }, {});
-        var connections = steps.reduce(function(accumulator, step) {
-                            if(step.connections) {
-                                for(key in step.connections) {
-                                    accumulator[key] = step.connections[key];
+        var connections = states.reduce(function(accumulator, state) {
+                            if(state.connections) {
+                                for(key in state.connections) {
+                                    accumulator[key] = state.connections[key];
                                 }
                             }
                             return accumulator;
                           }, {});
 
-        var items = JSON.parse(JSON.stringify(steps.shift().actions[0].items)),
+        var items = JSON.parse(JSON.stringify(states.shift().actions[0].items)),
             graph = new NIL.Graph(processItems(items)),
             metadata = {};
 
         // Note this process mutates the graph object in place.
-        steps.reduce(function(accumulator, step) {
-            return merge(accumulator, step);
+        states.reduce(function(accumulator, state) {
+            return merge(accumulator, state);
         }, graph);
 
         graph.position(positions);
         graph.connections(connections);
 
-        graph.setMeta(Paths[index]);
-        graph.setMeta({ "total" : Paths.length });
+        graph.setMeta(CourseSteps[index]);
+        graph.setMeta({ "total" : CourseSteps.length });
 
         dispatch.change(graph);
     }
@@ -174,19 +156,19 @@ NIL.Diagram = function(config) {
     // stay in bounds
     function boundedIndex(index) {
         if (index < 0) {
-            index = Paths.length-1;
+            index = CourseSteps.length-1;
         }
-        else if (index > Paths.length-1) {
+        else if (index > CourseSteps.length-1) {
             index = 0;
         }
 
         return index;
     }
 
-    function merge(graph, step) {
-        var actions = step.actions || [];
+    function merge(graph, state) {
+        var actions = state.actions || [];
         if(actions.length === 0) {
-            throw "The step '"+ step.diagramStep + "' has 0 action statements."
+            throw "The diagramState '"+ state.diagramState + "' has 0 action statements."
         }
 
         actions.forEach(function(action) {

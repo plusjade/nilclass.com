@@ -1,7 +1,7 @@
 {
-    "steps": [
+    "states": [
         {
-            "diagramStep" : "start",
+            "diagramState" : "start",
             "actions" : [
                 {
                     "method" : "add",
@@ -21,7 +21,7 @@
 
         ,
         {
-            "diagramStep" : "web-browser",
+            "diagramState" : "web-browser",
             "actions" : [
                 {
                     "method" : "add",
@@ -47,7 +47,7 @@
 
         ,
         {
-            "diagramStep" : "web-browser-platforms",
+            "diagramState" : "web-browser-platforms",
             "actions" : [
                 {
                     "method" : "add",
@@ -127,7 +127,7 @@
 
         ,
         {
-            "diagramStep" : "internet",
+            "diagramState" : "internet",
             "actions" : [
                 {
                     "method" : "add",
@@ -173,7 +173,7 @@
 
         ,
         {
-            "diagramStep" : "server",
+            "diagramState" : "server",
             "actions" : [
                 {
                     "method" : "add",
@@ -211,7 +211,7 @@
 
         ,
         {
-            "diagramStep" : "static-server",
+            "diagramState" : "static-server",
             "actions" : [
                 {
                     "method" : "add",
@@ -241,7 +241,7 @@
 
         ,
         {
-            "diagramStep" : "security-gate",
+            "diagramState" : "security-gate",
             "actions" : [
                 {
                     "method" : "add",
@@ -274,7 +274,7 @@
 
         ,
         {
-            "diagramStep" : "static-server-amazon",
+            "diagramState" : "static-server-amazon",
             "actions" : [
                 {
                     "method" : "add",
@@ -349,7 +349,7 @@
 
         ,
         {
-            "diagramStep" : "millions-pages",
+            "diagramState" : "millions-pages",
             "actions" : [
                 {
                     "method" : "add",
@@ -444,7 +444,7 @@
 
         ,
         {
-            "diagramStep" : "web-application",
+            "diagramState" : "web-application",
             "actions" : [
                 {
                     "method" : "add",
@@ -529,7 +529,7 @@
 
         ,
         {
-            "diagramStep" : "templates",
+            "diagramState" : "templates",
             "actions" : [
                 {
                     "method" : "add",
@@ -556,7 +556,7 @@
 
         ,
         {
-            "diagramStep" : "database",
+            "diagramState" : "database",
             "actions" : [
                 {
                     "method" : "add",
@@ -583,7 +583,7 @@
 
         ,
         {
-            "diagramStep" : "database-data",
+            "diagramState" : "database-data",
             "actions" : [
                 {
                     "method" : "add",
@@ -630,7 +630,7 @@
 
         ,
         {
-            "diagramStep" : "dedicated-database",
+            "diagramState" : "dedicated-database",
             "actions" : [
                 {
                     "method" : "add",
@@ -664,7 +664,7 @@
 
         ,
         {
-            "diagramStep" : "multi-app-architecture",
+            "diagramState" : "multi-app-architecture",
             "actions" : [
                 {
                     "method" : "add",
@@ -763,7 +763,7 @@
 
         ,
         {
-            "diagramStep" : "reverse-proxy",
+            "diagramState" : "reverse-proxy",
             "actions" : [
                 {
                     "method" : "add",
@@ -808,7 +808,7 @@
 
         ,
         {
-            "diagramStep" : "reverse-proxy-web-server",
+            "diagramState" : "reverse-proxy-web-server",
             "actions" : [
                 {
                     "method" : "add",

@@ -1,7 +1,7 @@
 {
-    "steps": [
+    "states": [
         {
-            "diagramStep" : "internet",
+            "diagramState" : "internet",
             "actions" : [
                 {
                     "method" : "add",
@@ -80,7 +80,7 @@
 
         ,
         {
-            "diagramStep" : "wordpress",
+            "diagramState" : "wordpress",
             "actions" : [
                 {
                     "method" : "add",
@@ -106,7 +106,7 @@
 
         ,
         {
-            "diagramStep" : "wordpress-database",
+            "diagramState" : "wordpress-database",
             "actions" : [
                 {
                     "method" : "remove",
@@ -149,7 +149,7 @@
 
         ,
         {
-            "diagramStep" : "wordpress-templates",
+            "diagramState" : "wordpress-templates",
             "actions" : [
                 {
                     "method" : "add",
@@ -175,7 +175,7 @@
 
         ,
         {
-            "diagramStep" : "wordpress-full",
+            "diagramState" : "wordpress-full",
             "actions" : [
                 {
                     "method" : "add",
@@ -207,7 +207,7 @@
 
         ,
         {
-            "diagramStep" : "super-cache",
+            "diagramState" : "super-cache",
             "actions" : [
                 {
                     "method" : "add",
@@ -235,7 +235,7 @@
 
         ,
         {
-            "diagramStep" : "super-cache-full",
+            "diagramState" : "super-cache-full",
             "actions" : [
                 {
                     "method" : "add",
@@ -292,7 +292,7 @@
 
         ,
         {
-            "diagramStep" : "static-site-generator",
+            "diagramState" : "static-site-generator",
             "actions" : [
                 {
                     "method" : "add",
@@ -368,7 +368,7 @@
 
         ,
         {
-            "diagramStep" : "static-site-generator-full",
+            "diagramState" : "static-site-generator-full",
             "actions" : [
                 {
                     "method" : "add",
@@ -403,7 +403,7 @@
 
         ,
         {
-            "diagramStep" : "site-generator-service",
+            "diagramState" : "site-generator-service",
             "actions" : [
                 {
                     "method" : "add",
@@ -438,7 +438,7 @@
 
         ,
         {
-            "diagramStep" : "push-published-site",
+            "diagramState" : "push-published-site",
             "actions" : [
                 {
                     "method" : "add",
@@ -460,7 +460,7 @@
 
         ,
         {
-            "diagramStep" : "published-site",
+            "diagramState" : "published-site",
             "actions" : [
                 {
                     "method" : "add",
@@ -512,7 +512,7 @@
         }
         ,
         {
-            "diagramStep" : "recap",
+            "diagramState" : "recap",
             "actions" : [
                 {
                     "method" : "add",

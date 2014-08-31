@@ -9,7 +9,7 @@ NIL.Navigation = function(config) {
     ;
 
     config.diagram.on('loaded', function() {
-        config.diagram.steps(function(steps) {
+        config.diagram.courseSteps(function(steps) {
             draw();
 
             tableOfContents.updateList(steps)

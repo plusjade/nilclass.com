@@ -78,16 +78,16 @@ The diagram file is made of JSON. It contains the instructions that build the ac
 
 [Example diagram files](https://github.com/plusjade/nilclass.com/tree/master/courses-diagrams).
 
-The diagram is a visualization; it transitions from one state (called steps) to another.
-Therefore the diagram instructions actually define an Array of _steps_.
-Each step implicitly builds onto the other. That is, step 3's state implicitly starts from the result of the combination of step 1 and step 2.
-This is a convenience, since it is common that each step procedurally adds a bit more elements to the last step.
+The diagram is a visualization; it transitions from one state to another.
+Therefore the diagram instructions actually define an Array of _states_.
+Each state implicitly builds onto the other. That is, state 3 implicitly starts from the result of the combination of state 1 and state 2.
+This is a convenience, since it is common that each state procedurally adds a bit more elements to the last state.
 
-**Step API**
+**Diagram State API**
 
 ```javascript
 {
-    "diagramStep" : "start",
+    "diagramState" : "start",
     "actions" : [
         {
             "method" : "add",
@@ -106,7 +106,7 @@ This is a convenience, since it is common that each step procedurally adds a bit
 }
 ```
 
-- **diagramStep** - The name of the step. This is used as an id for reference within the content file.
+- **diagramState** - The name of the state. This is used as an id for reference within the content file.
 - **actions** - Actions to carry out in order to build the actual diagram. (add/delete items).
 - **positions** - The `x,y` coordinate positions for each item. Positions need only be specified for _changes_ in position.
 
@@ -120,7 +120,7 @@ For example, to place a node in the center of the diagram, you would give it a p
 
 Understanding the viewBox [1](http://www.justinmccandless.com/blog/Making+Sense+of+SVG+viewBox's+Madness), [2](http://www.w3.org/TR/SVG/coords.html) is crucial to becoming productive in SVG and nilclass.
 
-Lastly, in defining positions within the "steps" object as seen above, only _new_ or _changing_ item positions need to be speficied. The positions, just like the steps, all cascade down into one another.
+Lastly, in defining positions within the "states" object as seen above, only _new_ or _changing_ item positions need to be speficied. The positions, just like the states, all cascade down into one another.
 
 
 ### Content files
@@ -136,7 +136,7 @@ The content is separated from the diagram instructions because it is difficult t
 The content also provides instructions for _overlays_. Overlays typically consist of various ways to highlight existing diagram paths and nodes.
 Overlays are considered content in this respect and not part of the actual diagram structure, so that's why they are specified in the content file.
 
-Note that content does not necessarily map 1 to 1 with diagram steps. This is because not all _content steps_ need to change _diagram states_. Sometimes content steps will simply highlight or focus on different items or paths of the same diagram state. Therefore, each content step specifies which diagram step it is referring to via `diagramStep`.
+Note that content does not necessarily map 1 to 1 with diagram states. This is because not all _content steps_ need to change _diagram states_. Sometimes content steps will simply highlight or focus on different items or paths of the same diagram state. Therefore, each content step specifies which diagram state it is referring to via `diagramState`.
 
 Please study existing content files to get a feel for the API. Edit an existing course to see how things change, then try creating your own course!
 
