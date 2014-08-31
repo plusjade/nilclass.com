@@ -6,15 +6,6 @@
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
     = stylesheets.load("application.css")
     = stylesheets.load("//fonts.googleapis.com/css?family=Nunito:300")
-    :css
-      body {
-        font-family: 'Nunito', sans-serif;
-        font-weight: 300;
-        font-size:15px;
-      }
-      #description div {
-        font-family: 'Nunito', sans-serif;
-      }
     = javascripts.load("offline/d3.v3.min.js")
     = javascripts.load("application.js")
     - if env == "production"

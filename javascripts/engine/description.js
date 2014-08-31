@@ -1,29 +1,61 @@
-NIL.Description = function(selector) {
+NIL.Description = function(container) {
     this.update = update;
 
-    var node = d3.select('body')
-                    .append('div').attr('id', selector.slice(1))
+    var d3Container = container
+                        .append('g')
+                            .attr('class', 'description')
+                            .attr("text-anchor", 'middle')
+                            .attr('transform', 'translate(600,50)')
     ;
 
     function update(heading, content) {
-        node.html('');
+        d3Container
+            .html('')
+            .style('opacity', 0);
 
-        node.append('h1')
-            .html(heading)
-            .style('opacity', 0)
-            .attr('class', function() {
-                return (content.length == 0) ? 'big' : null;
-            })
-            .transition()
-                .duration(500)
-                .style('opacity', 1);
+        var width = d3Container
+                        .append('svg:text')
+                            .text(heading)
+                            .attr('y', 0)
+                            .node().clientWidth
+        ;
 
-        node.append('div')
-            .html(content)
-            .style('opacity', 0)
+        // line-break if needed
+        if(width > 1050) {
+            var words = heading.split(' '),
+                half = Math.ceil(words.length/2),
+                firstLine = words.slice(0, half).join(' '),
+                secondLine = words.slice(half, words.length).join(' ')
+            ;
+
+            d3Container
+                .html('')
+                .append('svg:text')
+                    .text(firstLine)
+            ;
+            d3Container
+                .append('svg:text')
+                    .attr('y', 40)
+                    .text(secondLine)
+            ;
+        }
+        else if(content.length > 0) {
+            d3Container
+                .append("foreignObject")
+                    .attr('transform', 'translate(-400,20)')
+                    .attr("width", 800)
+                    .attr("height", 100)
+                    .append("xhtml:body")
+                        .append('xhtml:div')
+                        .attr('class', 'sub-description')
+                            .html(content)
+            ;
+        }
+
+        d3Container
             .transition()
-                .delay(800)
-                .duration(500)
+                .delay(1000)
+                .duration(400)
                 .style('opacity', 1);
     }
 }

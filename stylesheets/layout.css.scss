@@ -9,8 +9,9 @@ $alt-background-color: #212121;
 html, body {
   margin: 0;
   padding:0;
-  font-size: 14px;
-  font-family: "Helvetica Neue", Helvetica;
+  font-family: 'Nunito', "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 300;
+  font-size:15px;
 }
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
@@ -27,9 +28,18 @@ a {
     color: #666;
   }
 }
-svg {
-  overflow: visible;
+#world {
+  margin:auto;
+  width:100%;
 }
+#world svg {
+  display:block;
+  width: 100%;
+  margin:auto;
+  overflow: visible;
+  font-family: inherit;
+}
+
 kbd {
   padding: 0.1em 0.6em;
   border: 1px solid #ccc;
@@ -86,14 +96,6 @@ body.visualizer {
     width: 35px;
   }
 }
-
-#world {
-  position: absolute;
-  bottom:20px;
-  width: 100%;
-  height: auto;
-}
-
 
 #table-of-contents {
   $border-color: #222;
@@ -185,26 +187,6 @@ body.visualizer {
 
 
 #description {
-  position: absolute;
-  top: 0;
-  left: 10%;
-  width: 80%;
-  height:200px;
-  z-index: 20;
-  overflow: visible;
-  background-color: transparent;
-  color:#555;
-  h1 {
-    font-size: 34px;
-    margin: 15px 0 0 0;
-    color: inherit;
-    line-height: 1.5em;
-    text-align: center;
-    text-transform:capitalize;
-    &.big {
-      font-size: 48px;
-    }
-  }
   div {
     font: 16px 'Helvetica Neue';
     color: inherit;

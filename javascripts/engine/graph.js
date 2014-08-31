@@ -110,7 +110,7 @@ NIL.Graph = function(items) {
             __dict__[id]._id = __dict__[id].id || __dict__[id].name;
             var coord = {
                 x : data[id][0],
-                y : data[id][1]
+                y : data[id][1] + 130
             }
 
             __dict__[id].x0 = 600;

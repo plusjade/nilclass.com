@@ -2,15 +2,14 @@
 NIL.course = function(course) {
     var diagram = new NIL.Diagram(course);
 
-    // Textual description
-    var description = new NIL.Description("#description");
-
     // SVG visualization
     var world = d3.select('body').append('div').attr('id', 'world')
                     .append("svg:svg")
-                        .attr('viewBox','0 0 1200 500')
+                        .attr('viewBox','0 0 1200 600')
                         .append("svg:g")
     ;
+    // Textual description
+    var description = new NIL.Description(world);
 
     // Navigation components
     var navigation = new NIL.Navigation({
