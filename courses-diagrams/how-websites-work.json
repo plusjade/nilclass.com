@@ -15,7 +15,7 @@
             ]
             ,
             "positions" : {
-                "You" : [100, 200]
+                "You" : [600, 200]
             }
         }
 
@@ -36,7 +36,7 @@
             ]
             ,
             "positions" : {
-                "Web Browser" : [200, 200]
+                "Web Browser" : [700, 200]
             }
             ,
             "connections" : {
@@ -103,6 +103,9 @@
             ]
             ,
             "positions" : {
+                "You" : [100, 200],
+                "Web Browser" : [200, 200],
+
                 "Anna" : [100, 50],
                 "Pinky" : [100, 350],
                 "Tablet" : [300, 350],
@@ -344,6 +347,100 @@
             }
         }
 
+        ,
+        {
+            "diagramStep" : "millions-pages",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "product-5",
+                            "name" : "Product 5",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "id" : "product-6",
+                            "name" : "Product 6",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "id" : "product-7",
+                            "name" : "Product 7",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "id" : "product-8",
+                            "name" : "Product 8",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "id" : "product-9",
+                            "name" : "Product 9",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "id" : "product-10",
+                            "name" : "Product 10",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "id" : "product-11",
+                            "name" : "Product 11",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "id" : "product-12",
+                            "name" : "Product 12",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "product-5" : [850, 50],
+                "product-6" : [850, 175],
+                "product-7" : [850, 300],
+                "product-8" : [850, 425],
+                "product-9" : [950, 50],
+                "product-10" : [950, 175],
+                "product-11" : [950, 300],
+                "product-12" : [950, 425]
+            }
+            ,
+            "connections" : {
+                "Filesystem" : [
+                    "product-1",
+                    "product-2",
+                    "product-3",
+                    "product-4",
+                    "product-5",
+                    "product-6",
+                    "product-7",
+                    "product-8",
+                    "product-9",
+                    "product-10",
+                    "product-11",
+                    "product-12"
+                ]
+            }
+        }
 
         ,
         {
@@ -355,12 +452,6 @@
                         {
                             "id" : "Application",
                             "icon": "software",
-                            "from" : "Web Server"
-                        }
-                        ,
-                        {
-                            "id" : "Templates",
-                            "icon": "documents-code",
                             "from" : "Web Server"
                         }
                     ]
@@ -384,6 +475,38 @@
                         {
                             "id" : "product-4"
                         }
+                        ,
+                        {
+                            "id" : "product-5"
+                        }
+                        ,
+                        {
+                            "id" : "product-6"
+                        }
+                        ,
+                        {
+                            "id" : "product-7"
+                        }
+                        ,
+                        {
+                            "id" : "product-8"
+                        }
+                        ,
+                        {
+                            "id" : "product-9"
+                        }
+                        ,
+                        {
+                            "id" : "product-10"
+                        }
+                        ,
+                        {
+                            "id" : "product-11"
+                        }
+                        ,
+                        {
+                            "id" : "product-12"
+                        }
                     ]
                 }
             ]
@@ -394,14 +517,39 @@
                 "product-3" : [950, 250],
                 "product-4" : [950, 350],
 
+                "Filesystem" : [750, 250],
+                "Application" : [650, 250]
+            }
+            ,
+            "connections" : {
+                "Application" : ["Web Server"],
+                "Web Server" : []
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "templates",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "Templates",
+                            "icon": "documents-code",
+                            "from" : "Application"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
                 "Filesystem" : [850, 250],
-                "Application" : [650, 250],
                 "Templates" : [750, 250]
             }
             ,
             "connections" : {
                 "Application" : ["Web Server", "Templates"],
-                "Web Server" : [],
                 "Templates" : "Filesystem"
             }
         }
@@ -418,7 +566,28 @@
                             "icon": "software",
                             "from" : "Server"
                         }
-                        ,
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Filesystem" : [800, 350],
+
+                "Database" : [750, 100]
+            }
+            ,
+            "connections" : {
+                "Database" : ["Templates"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "database-data",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
                         {
                             "id" : "Product 1",
                             "icon" : "document",
@@ -448,9 +617,6 @@
             ]
             ,
             "positions" : {
-                "Filesystem" : [800, 350],
-
-                "Database" : [750, 100],
                 "Product 1" : [900, 50],
                 "Product 2" : [900, 150],
                 "Product 3" : [900, 250],

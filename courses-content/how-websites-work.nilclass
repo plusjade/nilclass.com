@@ -21,44 +21,98 @@ Follow along as we go behind the scenes and visually explore how web sites work 
     "focusPath" : ["You", "Web Browser"]
 }
 
-
 # Web browsers run on your laptop or smartphone just like Excel or Photoshop.
 {
     "diagramStep" : "web-browser-platforms",
-    "focus" : ["Laptop", "Phone", "Tablet"],
-    "focusPath" : ["You", "Web Browser", "Laptop"]
+    "focus" : ["Laptop", "Phone", "Tablet"]
 }
 
 
-# The web browser downloads Content over the Internet.
-
+# The web browser downloads content over the Internet.
 {
     "diagramStep" : "internet",
     "focus" : "Internet",
-    "focusPath" : ["You", "Laptop", "Internet"]
+    "focusPaths" : [
+        ["You", "Laptop", "Internet", "HTML"],
+        ["Internet", "Image"],
+        ["Internet", "Video"]
+    ]
 }
 
-It can download and stream media like text, images, pdfs, movies, and music.
+# Web browsers can download and stream media like text, images, pdfs, movies, and music.
+{
+    "diagramStep" : "internet",
+    "focus" : ["HTML", "Image", "Video"]
+}
 
-# This content is stored on other computers called servers
+# This content is stored on other computers called servers.
 {
     "diagramStep" : "server",
     "focus" : "Server"
 }
 
-A server is just a computer. It contains files in its filesystem just like the files and folders on your personal computer.
-
-
-# Servers that accept Internet requests are called Web Servers
+# A server is just a computer. It contains files in its filesystem just like the files and folders on your personal computer.
 {
-    "diagramStep" : "static-server",
-    "focus" : "Web Server",
-    "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server"]
+    "diagramStep" : "server",
+    "focus" : "Filesystem"
 }
 
-In order to accept requests coming in over the Internet, the server runs a software program called a <strong>web-server</strong>.
+# Technically, this entire network of computers is the Internet. The Internet icon simply illustrates connections within the network.
+{
+    "diagramStep" : "server",
+    "focus" : ["Phone", "Laptop", "Tablet", "Internet", "Server"]
+}
+
+
+# Servers that accept Internet requests are called Web Servers.
+{
+    "diagramStep" : "server",
+    "focus" : "Server",
+    "focusPath" : ["You", "Laptop", "Internet", "Server"]
+}
+
+# To accept Internet requests, the server runs a software program called a web-server.
+{
+    "diagramStep" : "static-server",
+    "focus" : "Web Server"
+}
 
 # The web-server software dictates which files and programs are OK to be accessed from the Internet.
+{
+    "diagramStep" : "static-server",
+    "focusPaths" : [
+        ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"],
+        ["Filesystem", "HTML"],
+        ["Filesystem", "Image"]
+    ],
+    "disable" : ["Video"]
+}
+
+# Servers have private files that should never be web accessible ...
+{
+    "diagramStep" : "security-gate",
+    "focus" : ["Passwords", "Secrets"],
+    "disable" : ["Passwords", "Secrets"]
+}
+
+# Therefore, web requests are handled only by the web-server acting as a kind of security gate.
+{
+    "diagramStep" : "security-gate",
+    "focusPaths" : [
+        ["You", "Laptop", "Internet", "Server", "Web Server"],
+        ["Anna", "Phone", "Internet", "Server", "Web Server"]
+    ],
+    "disable" : ["Passwords", "Secrets"]
+}
+
+# All web pages are just text. Even media like images, and video are encoded and sent as text-based files.
+{
+    "diagramStep" : "security-gate",
+    "focus" : ["HTML", "Video", "Image"],
+    "disable" : ["Passwords", "Secrets"]
+}
+
+# When a request comes in, the server processes the request and sends back text that describes the web-page you see.
 {
     "diagramStep" : "security-gate",
     "focusPaths" : [
@@ -70,21 +124,13 @@ In order to accept requests coming in over the Internet, the server runs a softw
     "disable" : ["Passwords", "Secrets"]
 }
 
-Servers have private files you need to deny outside access to, so when web requests come in they are handled <em>only</em> by the web-server which acts as a kind of security gate.
-
-
-# Web pages are just media like videos, images, and text.
+# The simplest way to send this content to the user is for the web-server to retrieve it from its own filesystem.
 {
     "diagramStep" : "security-gate",
-    "focus" : ["Filesystem", "HTML", "Video", "Image"],
-    "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"]
+    "focus" : ["Filesystem"],
+    "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"],
+    "disable" : ["Passwords", "Secrets"]
 }
-
-When a request comes in, the server processes the request and sends back content that will make up the web-page you see.
-Youtube sends videos, Instagram sends images, and Spotify streams audio files.
-
-The simplest way to send this content to the user is for the web-server to retrieve it from its own <strong>filesystem</strong>.
-
 
 # Does that mean Amazon.com has millions of product pages stored as files?
 {
@@ -92,30 +138,43 @@ The simplest way to send this content to the user is for the web-server to retri
     "focus" : ["product-1","product-2","product-3","product-4"]
 }
 
-<a href="http://www.amazon.com/">Amazon.com</a> has web pages for millions of products. 
-But creating millions of product page files would take forever and be hard to maintain.
-Updating the product page layout would require changing every single file!
+# Creating millions of product page files would take forever and be hard to maintain.
+{
+    "diagramStep" : "millions-pages"
+}
 
+# Updating the product page layout would require changing every single file!
+{
+    "diagramStep" : "millions-pages",
+    "focus" : ["product-1","product-2","product-3","product-4", "product-5","product-6","product-7","product-8", "product-9","product-10","product-11","product-12"]
+}
 
-# A web application can create pages on demand.
+# A web application is a software program that can create pages on demand.
 {
     "diagramStep" : "web-application",
-    "focus" : ["Application", "Templates"],
+    "focus" : ["Application"]
+}
+
+# The web server is configured to route requests to the web application instead of serving files directly.
+{
+    "diagramStep" : "web-application",
+    "focus" : ["Web Server"],
+    "focusPath" : ["Web Server", "Application"]
+}
+
+
+# Web applications can read from a template file and build a custom page dynamically.
+{
+    "diagramStep" : "templates",
+    "focus" : ["Templates"],
     "focusPath" : ["Application", "Templates"]
 }
 
-A web application is a software program. It can do work <em>on demand</em> like read from a template file and build a custom page <em>dynamically</em>.
-This means web pages don't actually have to exist, an application can create them as needed.
-
-
-# The web-server routes requests to the _Web Application_
+# This means web pages don't actually have to exist, an application can create them as needed.
 {
-    "diagramStep" : "web-application",
-    "focus" : "Application",
-    "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Application"]
+    "diagramStep" : "templates",
+    "focus" : ["Application"]
 }
-
-Instead of serving files directly, the web-server is configured to route web-requests to the web application running live on your server.
 
 
 # A web application can interact with a database.
@@ -125,41 +184,76 @@ Instead of serving files directly, the web-server is configured to route web-req
     "focusPath" : ["Application", "Templates", "Database"]
 }
 
-A database is a software program installed on the server that helps with efficiently storing and accessing data.
+# A database is a software program installed on the server that helps with efficiently storing and accessing data.
+{
+    "diagramStep" : "database",
+    "focus" : "Database"
+}
 
-We can use a database to store Amazon's millions of products as data: `description, price, sizes, images`.
-
+# We can use a database to store Amazon's millions of products as data: description, price, sizes, images.
+{
+    "diagramStep" : "database-data",
+    "focus" : ["Product 1", "Product 2", "Product 3", "Product 4"],
+    "focusPaths" : [
+        ["Database", "Product 1"],
+        ["Database", "Product 2"],
+        ["Database", "Product 3"],
+        ["Database", "Product 4"]
+    ]
+}
 
 # The web application queries the database to populate its templates.
 {
-    "diagramStep" : "database",
+    "diagramStep" : "database-data",
     "focus" : "Templates",
     "focusPath" : ["Application", "Templates", "Database", "Product 1"]
 }
 
-The app makes a query to the database for product data then uses the data to populate a page template that has placeholder values like {price}, {description}, etc.
-Now if you want change the product template, you only have to change one file. =)
+# The product data is used to populate a page template that has placeholder values like {price}, {description}, etc.
+{
+    "diagramStep" : "database-data",
+    "focus" : "Templates"
+}
 
+# Now if you want change the product template, you only have to change one file. =)
+{
+    "diagramStep" : "database-data",
+    "focus" : "Templates"
+}
 
-# A Dedicated Database Server can Handle More Requests
+# Our software programs have been running on one physical server. Each server has physical limits in how many requests it can handle.
+{
+    "diagramStep" : "database-data",
+    "focus" : ["Server", "Web Server", "Database", "Application"]
+}
+
+# To handle more requests, or scale your application, you can move your database software to its own dedicated database server.
 {
     "diagramStep" : "dedicated-database",
     "focus" : "Database Server"
 }
 
-So far all our software programs have been running on <em>one</em> physical server. But each server has physical limits in how many requests it can handle.
-To handle more requests, or <em>scale</em> your application, you can move your database software to its own dedicated database server.
 
-# Dedicated App Servers and Database Servers
+# Now your app server can concentrate on serving web-requests,
 {
     "diagramStep" : "dedicated-database",
-    "focus" : ["Server", "Database Server"]
+    "focus" : "Server"
 }
 
-Now your app server can concentrate on serving web-requests, while your database-server gets more computing power to manage the database.
+# While your database-server gets more computing power to manage the database.
+{
+    "diagramStep" : "dedicated-database",
+    "focus" : "Database Server"
+}
 
 
-# One lonely server may be a bottleneck
+# One lonely server may be a bottleneck.
+{
+    "diagramStep" : "dedicated-database",
+    "focus" : "Server"
+}
+
+# The application server is no longer handling the database load, but it is still solely responsible for **ALL** requests =/.
 {
     "diagramStep" : "dedicated-database",
     "focus" : "Server",
@@ -170,9 +264,14 @@ Now your app server can concentrate on serving web-requests, while your database
     ]
 }
 
-The application server is no longer handling the database load, but it is still solely responsible for **ALL** requests =/.
 
-# Use Multiple Application Servers to Distribute The Request Load
+# We can help this poor server out by adding more of his friends to share the load.
+{
+    "diagramStep" : "multi-app-architecture",
+    "focus" : ["Server", "Server (clone 1)", "Server (clone 2)"]
+}
+
+# Multiple application servers distribute the request load.
 {
     "diagramStep" : "multi-app-architecture",
     "focusPaths" : [
@@ -182,11 +281,24 @@ The application server is no longer handling the database load, but it is still 
     ]
 }
 
-All computers ultimately have physical limits so we should help this poor server out by adding more of his friends to share the load.
-But how do we send requests to the new servers?
 
+# How do we send requests to the new servers?
+{
+    "diagramStep" : "multi-app-architecture",
+    "focusPaths" : [
+        ["Anna", "Phone Web Browser", "Phone", "Internet", "Server (clone 2)"],
+        ["You", "Web Browser", "Laptop", "Internet", "Server (clone 1)"],
+        ["Pinky", "Tablet Web Browser", "Tablet", "Internet", "Server"]
+    ]
+}
 
-# A reverse-proxy server delegates or <em>proxies</em> requests across multiple application servers.
+# A reverse-proxy server delegates requests across multiple application servers.
+{
+    "diagramStep" : "reverse-proxy",
+    "focus" : "Reverse Proxy"
+}
+
+# The reverse-proxy is inserted before our app-servers so requests go directly to the reverse-proxy.
 {
     "diagramStep" : "reverse-proxy",
     "focus" : "Reverse Proxy",
@@ -197,25 +309,27 @@ But how do we send requests to the new servers?
     ]
 }
 
-
-The reverse-proxy is inserted <em>before</em> our app-servers so requests go directly to the reverse-proxy.
-
-# The web server on the reverse proxy server routes requests to other servers
+# The reverse proxy runs its own web server software program.
 {
     "diagramStep" : "reverse-proxy-web-server",
-    "focus" : "Reverse Proxy",
+    "focus" : "reverse-proxy-web-server"
+}
+
+# The web server on the reverse proxy server is configured to route requests to other servers.
+{
+    "diagramStep" : "reverse-proxy-web-server",
     "focusPaths" : [
-        ["Anna", "Phone Web Browser", "Phone", "Internet", "Reverse Proxy", "reverse-proxy-web-server", "Server"],
-        ["You", "Web Browser", "Laptop", "Internet", "Reverse Proxy", "reverse-proxy-web-server", "Server (clone 1)"],
-        ["Pinky", "Tablet Web Browser", "Tablet", "Internet", "Reverse Proxy", "reverse-proxy-web-server", "Server (clone 2)"]
+        ["reverse-proxy-web-server", "Server"],
+        ["reverse-proxy-web-server", "Server (clone 1)"],
+        ["reverse-proxy-web-server", "Server (clone 2)"]
     ]
 }
 
-Instead of serving a specific web-application software program, a web-server can be configured to route requests to <em>other servers</em>.
 Find out more here: <a href="http://stackoverflow.com/a/366212/101940">http://stackoverflow.com/a/366212/101940</a>.
 
 
-# Scaling horizontally: Using Many small application servers
+
+# Using many small application servers is known as scaling horizontally.
 {
     "diagramStep" : "reverse-proxy-web-server",
     "focus" : ["Server", "Server (clone 1)", "Server (clone 2)"],
@@ -226,9 +340,20 @@ Find out more here: <a href="http://stackoverflow.com/a/366212/101940">http://st
     ]
 }
 
-Scaling horizontally is usually very cost effective because it's cheaper to buy many commodity servers than a few powerful servers.
+# Scaling horizontally is usually cost effective -- it's cheaper to buy many commodity servers than a few powerful servers.
+{
+    "diagramStep" : "reverse-proxy-web-server"
+}
 
-# Scaling horizontally mitigates risk
+
+# Scaling horizontally mitigates risk.
+{
+    "diagramStep" : "reverse-proxy-web-server",
+    "crossOut" : ["Server"],
+    "disable" : ["Web Server", "Application", "Templates", "Filesystem"]
+}
+
+# Many servers means some can fail and the others will pick up the load.
 {
     "diagramStep" : "reverse-proxy-web-server",
     "focusPaths" : [
@@ -241,10 +366,19 @@ Scaling horizontally is usually very cost effective because it's cheaper to buy 
     "disable" : ["Web Server", "Application", "Templates", "Filesystem"]
 }
 
-If you only have one powerful server and it fails, your site goes down. Many servers means some can fail and the others will pick up the load.
 
+# A centralized database server maintains data integrity across application servers.
+{
+    "diagramStep" : "reverse-proxy-web-server",
+    "focus" : ["Database Server"],
+    "focusPaths" : [
+        ["Application", "Database Server"],
+        ["App clone 1", "Database Server"],
+        ["App clone 2", "Database Server"]
+    ]
+}
 
-# A centralized database server maintains data integrity across application servers
+# This solves the case where a user's request will be handled by app1 first, then another request by the same user is handled by app2. 
 {
     "diagramStep" : "reverse-proxy-web-server",
     "focus" : ["Database Server"],
@@ -254,9 +388,6 @@ If you only have one powerful server and it fails, your site goes down. Many ser
         ["Server (clone 2)", "Web Server clone 2", "App clone 2", "Database Server"]
     ]
 }
-
-This solves the case where a user's request will be handled by app1 first, then another request by the same user is handled by app2. 
-The data should be the same across both request scenarios.
 
 
 # The end
