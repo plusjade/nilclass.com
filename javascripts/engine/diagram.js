@@ -72,14 +72,14 @@ NIL.Diagram = function(config) {
         }
         else {
             d3.json(contentUrl(), function(courseData) {
-                if(courseData.course) {
+                if(courseData) {
                     d3.json(diagramUrl(), function(diagramData) {
                         if(diagramData) {
                             States = diagramData.states;
                             processStateIds(diagramData.states);
-
-                            CourseSteps = courseData.course.steps;
-                            CourseSteps.forEach(function(step) {
+                            CourseSteps = courseData.steps;
+                            CourseSteps.forEach(function(step, i) {
+                                step.index = i;
                                 step.diagramStateIndex = StateIds[step.diagramState];
                             })
 

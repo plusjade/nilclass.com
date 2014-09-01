@@ -76,7 +76,7 @@ A course is composed of two files: a diagram file and a content file.
 
 The diagram file is made of JSON. It contains the instructions that build the actual diagram visualizations.
 
-[Example diagram files](https://github.com/plusjade/nilclass.com/tree/master/courses-diagrams).
+[Example diagram file](https://github.com/plusjade/nilclass.com/tree/master/courses-data/how-websites-work/diagram.json).
 
 The diagram is a visualization; it transitions from one state to another.
 Therefore the diagram instructions actually define an Array of _states_.
@@ -125,15 +125,10 @@ Lastly, in defining positions within the "states" object as seen above, only _ne
 
 ### Content files
 
-Course content files are formatted by using the `.nilclass` extension. The parser is in the plugins directory.
 
-[Example content files](https://github.com/plusjade/nilclass.com/tree/master/courses-content).
+[Example content file](https://github.com/plusjade/nilclass.com/tree/master/courses-data/how-websites-work/content.json).
 
-The content file cant be thought of blocks of markdown and JSON.
-
-The content file holds the textual content provided with each step of the course.
-The content is separated from the diagram instructions because it is difficult to write HTML-based content within a JSON payload.
-The content also provides instructions for _overlays_. Overlays typically consist of various ways to highlight existing diagram paths and nodes.
+The content file holds the textual content provided with each step of the course as well as instructions for _overlays_. Overlays typically consist of various ways to highlight existing diagram paths and nodes.
 Overlays are considered content in this respect and not part of the actual diagram structure, so that's why they are specified in the content file.
 
 Note that content does not necessarily map 1 to 1 with diagram states. This is because not all _content steps_ need to change _diagram states_. Sometimes content steps will simply highlight or focus on different items or paths of the same diagram state. Therefore, each content step specifies which diagram state it is referring to via `diagramState`.

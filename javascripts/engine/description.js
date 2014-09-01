@@ -39,7 +39,7 @@ NIL.Description = function(container) {
                     .text(secondLine)
             ;
         }
-        else if(content.length > 0) {
+        else if(content && content.length > 0) {
             d3Container
                 .append("foreignObject")
                     .attr('transform', 'translate(-400,20)')
