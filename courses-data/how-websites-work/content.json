@@ -1,0 +1,427 @@
+{
+    "steps" : [
+        {
+            "title" : "How Websites Work.",
+            "diagramState" : "start",
+            "focus" : "You"
+        }
+        ,
+        {
+            "title" : "Web pages are viewed using a software-progam called a web-browser.",
+            "diagramState" : "web-browser",
+            "focus" : "Web Browser",
+            "focusPath" : ["You", "Web Browser"]
+        }
+
+        ,
+        {
+            "title" : "Web browsers run on your laptop or smartphone just like Excel or Photoshop.",
+            "diagramState" : "web-browser-platforms",
+            "focus" : ["Laptop", "Phone", "Tablet"]
+        }
+
+        ,
+        {
+            "title" : "The web browser downloads content over the Internet.",
+            "diagramState" : "internet",
+            "focus" : "Internet",
+            "focusPaths" : [
+                ["You", "Laptop", "Internet", "HTML"],
+                ["Internet", "Image"],
+                ["Internet", "Video"]
+            ]
+        }
+
+        ,
+        {
+            "title" : "Web browsers can download and stream media like text, images, pdfs, movies, and music.",
+            "diagramState" : "internet",
+            "focus" : ["HTML", "Image", "Video"]
+        }
+
+        ,
+        {
+            "title" : "This content is stored on other computers called servers.",
+            "diagramState" : "server",
+            "focus" : "Server"
+        }
+
+        ,
+        {
+            "title" : "A server is just a computer. It contains files in its filesystem just like the files and folders on your personal computer.",
+            "diagramState" : "server",
+            "focus" : "Filesystem"
+        }
+
+        ,
+        {
+            "title" : "Technically, this entire network of computers is the Internet. The Internet icon simply illustrates connections within the network.",
+            "diagramState" : "server",
+            "focus" : ["Phone", "Laptop", "Tablet", "Internet", "Server"]
+        }
+
+
+        ,
+        {
+            "title" : "Servers that accept Internet requests are called Web Servers.",
+            "diagramState" : "server",
+            "focus" : "Server",
+            "focusPath" : ["You", "Laptop", "Internet", "Server"]
+        }
+
+        ,
+        {
+            "title" : "To accept Internet requests, the server runs a software program called a web-server.",
+            "diagramState" : "static-server",
+            "focus" : "Web Server"
+        }
+
+        ,
+        {
+            "title" : "The web-server software dictates which files and programs are OK to be accessed from the Internet.",
+            "diagramState" : "static-server",
+            "focusPaths" : [
+                ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"],
+                ["Filesystem", "HTML"],
+                ["Filesystem", "Image"]
+            ],
+            "disable" : ["Video"]
+        }
+
+        ,
+        {
+            "title" : "Servers have private files that should never be web accessible ...",
+            "diagramState" : "security-gate",
+            "focus" : ["Passwords", "Secrets"],
+            "disable" : ["Passwords", "Secrets"]
+        }
+
+        ,
+        {
+            "title" : "Therefore, web requests are handled only by the web-server acting as a kind of security gate.",
+            "diagramState" : "security-gate",
+            "focusPaths" : [
+                ["You", "Laptop", "Internet", "Server", "Web Server"],
+                ["Anna", "Phone", "Internet", "Server", "Web Server"]
+            ],
+            "disable" : ["Passwords", "Secrets"]
+        }
+
+        ,
+        {
+            "title" : "All web pages are just text. Even media like images, and video are encoded and sent as text-based files.",
+            "diagramState" : "security-gate",
+            "focus" : ["HTML", "Video", "Image"],
+            "disable" : ["Passwords", "Secrets"]
+        }
+
+        ,
+        {
+            "title" : "When a request comes in, the server processes the request and sends back text that describes the web-page you see.",
+            "diagramState" : "security-gate",
+            "focusPaths" : [
+                ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"],
+                ["Filesystem", "HTML"],
+                ["Filesystem", "Image"],
+                ["Filesystem", "Video"]
+            ],
+            "disable" : ["Passwords", "Secrets"]
+        }
+
+        ,
+        {
+            "title" : "The simplest way to send this content to the user is for the web-server to retrieve it from its own filesystem.",
+            "diagramState" : "security-gate",
+            "focus" : ["Filesystem"],
+            "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"],
+            "disable" : ["Passwords", "Secrets"]
+        }
+
+        ,
+        {
+            "title" : "Does that mean Amazon.com has millions of product pages stored as files?",
+            "diagramState" : "static-server-amazon",
+            "focus" : ["product-1","product-2","product-3","product-4"]
+        }
+
+        ,
+        {
+            "title" : "Creating millions of product page files would take forever and be hard to maintain.",
+            "diagramState" : "millions-pages"
+        }
+
+        ,
+        {
+            "title" : "Updating the product page layout would require changing every single file!",
+            "diagramState" : "millions-pages",
+            "focus" : ["product-1","product-2","product-3","product-4", "product-5","product-6","product-7","product-8", "product-9","product-10","product-11","product-12"]
+        }
+
+        ,
+        {
+            "title" : "A web application is a software program that can create pages on demand.",
+            "diagramState" : "web-application",
+            "focus" : ["Application"]
+        }
+
+        ,
+        {
+            "title" : "The web server is configured to route requests to the web application instead of serving files directly.",
+            "diagramState" : "web-application",
+            "focus" : ["Web Server"],
+            "focusPath" : ["Web Server", "Application"]
+        }
+
+        ,
+        {
+            "title" : "Web applications can read from a template file and build a custom page dynamically.",
+            "diagramState" : "templates",
+            "focus" : ["Templates"],
+            "focusPath" : ["Application", "Templates"]
+        }
+
+        ,
+        {
+            "title" : "This means web pages don't actually have to exist, an application can create them as needed.",
+            "diagramState" : "templates",
+            "focus" : ["Application"]
+        }
+
+
+        ,
+        {
+            "title" : "A web application can interact with a database.",
+            "diagramState" : "database",
+            "focus" : "Database",
+            "focusPath" : ["Application", "Templates", "Database"]
+        }
+
+        ,
+        {
+            "title" : "A database is a software program installed on the server that helps with efficiently storing and accessing data.",
+            "diagramState" : "database",
+            "focus" : "Database"
+        }
+
+        ,
+        {
+            "title" : "We can use a database to store Amazon's millions of products as data: description, price, sizes, images.",
+            "diagramState" : "database-data",
+            "focus" : ["Product 1", "Product 2", "Product 3", "Product 4"],
+            "focusPaths" : [
+                ["Database", "Product 1"],
+                ["Database", "Product 2"],
+                ["Database", "Product 3"],
+                ["Database", "Product 4"]
+            ]
+        }
+
+        ,
+        {
+            "title" : "The web application queries the database to populate its templates.",
+            "diagramState" : "database-data",
+            "focus" : "Templates",
+            "focusPath" : ["Application", "Templates", "Database", "Product 1"]
+        }
+
+        ,
+        {
+            "title" : "The product data is used to populate a page template that has placeholder values like {price}, {description}, etc.",
+            "diagramState" : "database-data",
+            "focus" : "Templates"
+        }
+
+        ,
+        {
+            "title" : "Now if you want change the product template, you only have to change one file. =)",
+            "diagramState" : "database-data",
+            "focus" : "Templates"
+        }
+
+        ,
+        {
+            "title" : "Our software programs have been running on one physical server. Each server has physical limits in how many requests it can handle.",
+            "diagramState" : "database-data",
+            "focus" : ["Server", "Web Server", "Database", "Application"]
+        }
+
+        ,
+        {
+            "title" : "To handle more requests, or scale your application, you can move your database software to its own dedicated database server.",
+            "diagramState" : "dedicated-database",
+            "focus" : "Database Server"
+        }
+
+
+        ,
+        {
+            "title" : "Now your app server can concentrate on serving web-requests,",
+            "diagramState" : "dedicated-database",
+            "focus" : "Server"
+        }
+
+        ,
+        {
+            "title" : "While your database-server gets more computing power to manage the database.",
+            "diagramState" : "dedicated-database",
+            "focus" : "Database Server"
+        }
+
+        ,
+        {
+            "title" : "One lonely server may be a bottleneck.",
+            "diagramState" : "dedicated-database",
+            "focus" : "Server"
+        }
+
+        ,
+        {
+            "title" : "The application server is no longer handling the database load, but it is still solely responsible for **ALL** requests =/.",
+            "diagramState" : "dedicated-database",
+            "focus" : "Server",
+            "focusPaths" : [
+                ["Anna", "Phone Web Browser", "Phone", "Internet", "Server"],
+                ["You", "Web Browser", "Laptop", "Internet", "Server"],
+                ["Pinky", "Tablet Web Browser", "Tablet", "Internet", "Server"]
+            ]
+        }
+
+        ,
+        {
+            "title" : "We can help this poor server out by adding more of his friends to share the load.",
+            "diagramState" : "multi-app-architecture",
+            "focus" : ["Server", "Server (clone 1)", "Server (clone 2)"]
+        }
+
+        ,
+        {
+            "title" : "Multiple application servers distribute the request load.",
+            "diagramState" : "multi-app-architecture",
+            "focusPaths" : [
+                ["Anna", "Phone Web Browser", "Phone", "Internet", "Server (clone 2)"],
+                ["You", "Web Browser", "Laptop", "Internet", "Server (clone 1)"],
+                ["Pinky", "Tablet Web Browser", "Tablet", "Internet", "Server"]
+            ]
+        }
+
+        ,
+        {
+            "title" : "How do we send requests to the new servers?",
+            "diagramState" : "multi-app-architecture",
+            "focusPaths" : [
+                ["Anna", "Phone Web Browser", "Phone", "Internet", "Server (clone 2)"],
+                ["You", "Web Browser", "Laptop", "Internet", "Server (clone 1)"],
+                ["Pinky", "Tablet Web Browser", "Tablet", "Internet", "Server"]
+            ]
+        }
+
+        ,
+        {
+            "title" : "A reverse-proxy server delegates requests across multiple application servers.",
+            "diagramState" : "reverse-proxy",
+            "focus" : "Reverse Proxy"
+        }
+
+        ,
+        {
+            "title" : "The reverse-proxy is inserted before our app-servers so requests go directly to the reverse-proxy.",
+            "diagramState" : "reverse-proxy",
+            "focus" : "Reverse Proxy",
+            "focusPaths" : [
+                ["Anna", "Phone Web Browser", "Phone", "Internet", "Reverse Proxy"],
+                ["You", "Web Browser", "Laptop", "Internet", "Reverse Proxy"],
+                ["Pinky", "Tablet Web Browser", "Tablet", "Internet", "Reverse Proxy"]
+            ]
+        }
+
+        ,
+        {
+            "title" : "The reverse proxy runs its own web server software program.",
+            "diagramState" : "reverse-proxy-web-server",
+            "focus" : "reverse-proxy-web-server"
+        }
+
+        ,
+        {
+            "title" : "The web server on the reverse proxy server is configured to route requests to other servers.",
+            "diagramState" : "reverse-proxy-web-server",
+            "focusPaths" : [
+                ["reverse-proxy-web-server", "Server"],
+                ["reverse-proxy-web-server", "Server (clone 1)"],
+                ["reverse-proxy-web-server", "Server (clone 2)"]
+            ]
+        }
+
+        ,
+        {
+            "title" : "Using many small application servers is known as scaling horizontally.",
+            "diagramState" : "reverse-proxy-web-server",
+            "focus" : ["Server", "Server (clone 1)", "Server (clone 2)"],
+            "focusPaths" : [
+                ["Anna", "Phone Web Browser", "Phone", "Internet", "Reverse Proxy", "reverse-proxy-web-server", "Server"],
+                ["You", "Web Browser", "Laptop", "Internet", "Reverse Proxy", "reverse-proxy-web-server", "Server (clone 1)"],
+                ["Pinky", "Tablet Web Browser", "Tablet", "Internet", "Reverse Proxy", "reverse-proxy-web-server", "Server (clone 2)"]
+            ]
+        }
+
+        ,
+        {
+            "title" : "Scaling horizontally is usually cost effective -- it's cheaper to buy many commodity servers than a few powerful servers.",
+            "diagramState" : "reverse-proxy-web-server"
+        }
+
+
+        ,
+        {
+            "title" : "Scaling horizontally mitigates risk.",
+            "diagramState" : "reverse-proxy-web-server",
+            "crossOut" : ["Server"],
+            "disable" : ["Web Server", "Application", "Templates", "Filesystem"]
+        }
+
+        ,
+        {
+            "title" : "Many servers means some can fail and the others will pick up the load.",
+            "diagramState" : "reverse-proxy-web-server",
+            "focusPaths" : [
+                ["Anna", "Phone Web Browser", "Phone", "Internet", "Reverse Proxy", "reverse-proxy-web-server", "Server (clone 1)"],
+                ["You", "Web Browser", "Laptop", "Internet", "Reverse Proxy", "reverse-proxy-web-server", "Server (clone 1)"],
+                ["Pinky", "Tablet Web Browser", "Tablet", "Internet", "Reverse Proxy", "reverse-proxy-web-server", "Server (clone 2)"]
+            ]
+            ,
+            "crossOut" : ["Server"],
+            "disable" : ["Web Server", "Application", "Templates", "Filesystem"]
+        }
+
+        ,
+        {
+            "title" : "A centralized database server maintains data integrity across application servers.",
+            "diagramState" : "reverse-proxy-web-server",
+            "focus" : ["Database Server"],
+            "focusPaths" : [
+                ["Application", "Database Server"],
+                ["App clone 1", "Database Server"],
+                ["App clone 2", "Database Server"]
+            ]
+        }
+
+        ,
+        {
+            "title" : "This solves the case where a user's request will be handled by app1 first, then another request by the same user is handled by app2. ",
+            "diagramState" : "reverse-proxy-web-server",
+            "focus" : ["Database Server"],
+            "focusPaths" : [
+                ["Server", "Web Server", "Application", "Database Server"],
+                ["Server (clone 1)", "Web Server clone 1", "App clone 1", "Database Server"],
+                ["Server (clone 2)", "Web Server clone 2", "App clone 2", "Database Server"]
+            ]
+        }
+
+        ,
+        {
+            "title" : "The end",
+            "diagramState" : "reverse-proxy-web-server",
+            "focus" : ["You"]
+        }
+    ]
+}
