@@ -34,11 +34,8 @@ class NilclassParse
   # Parsed steps for this course.
   def steps
     @steps ||= headers_human.each_with_index.map do |header, i|
-                slug = OutputRenderer.clean_slug_and_escape(header)
-
                 parse_chunk(i).merge({
                   title: header,
-                  slug: slug,
                   index: i,
                 })
               end

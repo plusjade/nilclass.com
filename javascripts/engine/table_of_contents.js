@@ -43,7 +43,7 @@ NIL.TableOfContents = function(containerSelector, stepToggleSelector) {
         })
 
         var nodes = d3Toc.select('ol').selectAll('li')
-                    .data(steps, function(d){ return d.slug })
+                    .data(steps)
                     .classed('active', function(d) { return d.active })
 
         nodes.exit().remove();

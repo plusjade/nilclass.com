@@ -50,9 +50,7 @@ NIL.Diagram = function(config) {
     //  [Array] - courseSteps. An ordered list of courseSteps.
     this.courseSteps = function(callback) {
         resolve(function() {
-            callback( CourseSteps.map(function(d) {
-                return { slug: d.slug, title: d.title };
-            }) )
+            callback(CourseSteps)
         })
     }
 
