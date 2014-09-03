@@ -10,8 +10,9 @@ NIL.Description = function(container) {
 
     function update(heading, content) {
         d3Container
-            .html('')
-            .style('opacity', 0);
+            .style('opacity', 0)
+            .selectAll('text').remove()
+        ;
 
         var width = d3Container
                         .append('svg:text')
@@ -29,7 +30,9 @@ NIL.Description = function(container) {
             ;
 
             d3Container
-                .html('')
+                .selectAll('text').remove()
+            ;
+            d3Container
                 .append('svg:text')
                     .text(firstLine)
             ;
