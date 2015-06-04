@@ -23,7 +23,7 @@ The diagram engine supports modern browsers only and is based on [d3.js](http://
 
 Installation assumes you have ruby and bundler installed. If you are not familiar with ruby please ping me and I'll walk you through getting set up. Note you don't actually have to _code_ in ruby to contribute to or use nilclass.
 
-**Intall**
+**Install**
 
     $ git clone git@github.com:plusjade/nilclass.com.git
     $ cd nilclas.com
